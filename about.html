@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours | Progression</title>
+    <style>
+        :root {
+            --bg-color: #050507;
+            --neon1: #00f5ff;
+            --neon2: #0077ff;
+            --text: #e0e0e0;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: rgba(5, 5, 7, 0.9);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 
+
+0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--neon1); }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--neon1);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 80px;
+            text-shadow: 0 0 15px var(--neon1);
+        }
+
+        /* Le Chemin (Ligne centrale) */
+        .roadmap {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--neon1), var(--neon2));
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px var(--neon1);
+        }
+
+        /* Les Noeuds (Ronds) */
+        .node {
+            position: relative;
+            width: 100%;
+            margin-bottom: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .node-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-color);
+            border: 3px solid var(--neon1);
+            border-radius: 50%;
+            z-index: 2;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--neon1);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .node-circle:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px var(--neon1);
+            background: var(--neon1);
+            color: var(--bg-color);
+        }
+
+        /* Label à côté du rond */
+        .node-label {
+            position: absolute;
+            width: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--neon2);
+        }
+
+        .node:nth-child(odd) .node-label { left: calc(50% + 50px); text-align: left; }
+        .node:nth-child(even) .node-label { right: calc(50% + 50px); text-align: right; }
+
+        /* Fenêtre de détails (Hidden par défaut) */
+        #details-panel {
+            position: fixed;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            background: rgba(10, 10, 15, 0.95);
+            border: 1px solid var(--neon1);
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: 0.5s ease-out;
+            z-index: 1000;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        #details-panel.active { bottom: 0; }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            color: var(--neon1);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="parcours.html" style="color:var(--neon1)">Parcours</a>
+    <a href="projets.html">Laboratoire</a>
+</nav>
+
+<div class="container">
+    <h1>SKILL_TREE</h1>
+
+    <div class="roadmap">
+        <!-- NODE 1 -->
+        <div class="node">
+            <div class="node-circle" onclick="showDetails('Baccalauréat', 'Option Informatique - Mention Bien. Découverte de la logique de programmation et des bases du réseau.')">01</div>
+            <div class="node-label">NIVEAU_01: BASES</div>
+        </div>
+
+        <!-- NODE 2 -->
+        <div class="node">
+            <div class="node-circle" onclick="showDetails('BTS Cybersécurité', 'Apprentissage du durcissement système (Linux/Windows) et analyse de trames réseau (Wireshark).')">02</div>
+            <div class="node-label">NIVEAU_02: DÉFENSE</div>
+        </div>
+
+        <!-- NODE 3 -->
+        <div class="node">
+            <div class="node-circle" onclick="showDetails('Certification CCNA', 'Certification Cisco en cours. Maîtrise du routage et de la commutation sécurisée.')">03</div>
+            <div class="node-label">NIVEAU_03: RÉSEAU</div>
+        </div>
+
+        <!-- NODE 4 -->
+        <div class="node">
+            <div class="node-circle" onclick="showDetails('Stage Pentesting', 'Stage chez CyberCorp. Initiation aux tests d\'intrusion web (OWASP) et scan de vulnérabilités.')">04</div>
+            <div class="node-label">NIVEAU_04: OFFENSIF</div>
+        </div>
+    </div>
+</div>
+
+<!-- Panneau de détails -->
+<div id="details-panel">
+    <span class="close-btn" onclick="closeDetails()">[ FERMER ]</span>
+    <h2 id="detail-title" style="color:var(--neon1); margin-top:0;">Titre</h2>
+    <p id="detail-text">Description ici...</p>
+</div>
+
+<script>
+    function showDetails(title, text) {
+        document.getElementById('detail-title').innerText = title;
+        document.getElementById('detail-text').innerText = text;
+        document.getElementById('details-panel').classList.add('active');
+    }
+
+    function closeDetails() {
+        document.getElementById('details-panel').classList.remove('active');
+    }
+</script>
+
+</body>
+</html>
