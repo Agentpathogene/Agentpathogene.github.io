@@ -1,80 +1,78 @@
-
 <!DOCTYPE html>
-  color:white;
-  padding:20px;
-  text-align:center;
-}
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Neon Blog</title>
+  <style>
+    :root {
+      --bg: #05010a;
+      --neon1: #00f5ff;
+      --neon2: #ff00ff;
+      --text: #eaeaea;
+    }
 
-nav{
-  background:#222;
-  text-align:center;
-  padding:10px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-nav a{
-  color:white;
-  margin:0 10px;
-  text-decoration:none;
-}
+    body {
+      background: radial-gradient(circle at top, #0b0014, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-section{
-  max-width:800px;
-  margin:20px auto;
-  background:white;
-  padding:20px;
-  border-radius:8px;
-}
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
 
-h2{
-  border-bottom:2px solid #ddd;
-  padding-bottom:5px;
-}
+    h1 {
+      font-size: 3rem;
+      color: var(--neon1);
+      text-shadow:
+        0 0 5px var(--neon1),
+        0 0 15px var(--neon1),
+        0 0 30px var(--neon2);
+      animation: flicker 2s infinite alternate;
+    }
 
-footer{
-  text-align:center;
-  padding:15px;
-  background:#111;
-  color:white;
-  margin-top:20px;
-}
-</style>
-</head>
+    p.subtitle {
+      color: var(--neon2);
+      margin-top: 10px;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px var(--neon2);
+    }
 
-<body>
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
 
-<header>
-  <h1>Mon Portfolio</h1>
-  <p>Cybersecurity Student</p>
-</header>
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
-</nav>
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+      transition: 0.3s ease;
+    }
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>Je débute en cybersécurité et j’apprends le pentesting et la sécurité web.</p>
-</section>
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px var(--neon1), 0 0 40px var(--neon2);
+    }
 
-<section id="projects">
-  <h2>Projects</h2>
-  <ul>
-    <li>CTF challenges</li>
-    <li>Web security basics</li>
-    <li>Linux practice</li>
-  </ul>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: your@email.com</p>
-</section>
-
-<footer>
-  <p>© 2026 Mon Portfolio</p>
-</footer>
-
-</body>
-</html>
