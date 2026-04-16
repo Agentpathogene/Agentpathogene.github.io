@@ -7,8 +7,8 @@
     <style>
         :root {
             --bg-color: #0a0a0c;
-            --accent: #00f5ff; /* Cyan néon */
-            --accent-dim: rgba(0, 245, 255, 0.15);
+            --accent: #00f5ff;
+            --accent-dim: rgba(0, 245, 255, 0.1);
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
             --card-bg: #111114;
@@ -18,14 +18,15 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* Navigation (Identique à ton code) */
+        /* NAVIGATION - Identique à ta Roadmap */
         nav {
             width: 100%;
             padding: 25px 0;
@@ -50,10 +51,12 @@
 
         nav a:hover, nav a.active { color: var(--accent); }
 
+        /* CONTAINER */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             width: 100%;
             padding: 150px 20px 100px;
+            box-sizing: border-box;
         }
 
         header { text-align: center; margin-bottom: 60px; }
@@ -63,6 +66,7 @@
             font-weight: 300;
             letter-spacing: -1px;
             margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .status-bar {
@@ -72,96 +76,108 @@
             opacity: 0.8;
         }
 
-        /* Grille des Réalisations */
+        /* GRID DES TRACKS */
         .tracks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
         }
 
         .track-card {
             background: var(--card-bg);
             border: 1px solid var(--line-color);
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .track-card:hover {
+            transform: translateY(-10px);
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 245, 255, 0.1);
         }
 
+        /* IMAGE STYLE */
         .track-image {
-            width: 100%;
-            height: 180px;
-            background: #1a1a1d; /* Fallback */
+            width: 
+
+100%;
+            height: 200px;
+            background: #1a1a1d;
+            position: relative;
             overflow: hidden;
-            border-bottom: 1px solid var(--line-color);
         }
 
         .track-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(40%) contrast(1.1);
+            opacity: 0.7;
             transition: 0.5s;
         }
 
         .track-card:hover .track-image img {
-            filter: grayscale(0%) contrast(1);
-            scale: 1.05;
+            opacity: 1;
+            transform: scale(1.05);
         }
 
+        /* CARD CONTENT */
         .track-info {
-            padding: 20px;
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .track-tag {
+        .track-category {
             font-family: monospace;
             font-size: 0.7rem;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
         }
 
         .track-title {
-            font-size: 1.1rem;
-            margin: 0 0 10px 0;
-            font-weight: 600;
+            font-size: 1.25rem;
+            margin: 0 0 12px 0;
+            color: var(--text-main);
         }
 
         .track-desc {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
+        /* CARD FOOTER */
         .track-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
             padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .difficulty {
+        .diff {
             font-family: monospace;
             font-size: 0.75rem;
+            font-weight: bold;
         }
 
-        .easy { color: #50fa7b; }
-        .medium { color: #ffb86c; }
-        .hard { color: #ff5555; }
+        .easy { color: #00ff41; }
+        .medium { color: #ff9d00; }
+        .hard { color: #ff3e3e; }
 
-        /* Footer */
+        /* FOOTER */
         footer {
-            padding: 50px;
+            margin-top: auto;
+            padding: 40px;
             font-size: 0.7rem;
             color: #444;
             letter-spacing: 1px;
@@ -180,8 +196,8 @@
 
 <div class="container">
     <header>
-        <h1>HTB_Labs_Archive</h1>
-        <div class="status-bar">> ACCÈS AUX RÉALISATIONS TECHNIQUE... OK</div>
+        <h1>HTB_Archive</h1>
+        <div class="status-bar">> INITIALIZING TRACK_VIEWER... LOADED</div>
     </header>
 
     <div class="tracks-grid">
@@ -189,16 +205,15 @@
         <!-- TRACK 1 -->
         <article class="track-card">
             <div class="track-image">
-                <!-- Remplace par l'URL de ton image HTB -->
-                <img src="https://hackthebox.com" alt="Intro to Cyber">
+                <img src="https://hackthebox.com" alt="SOC Analyst">
             </div>
             <div class="track-info">
-                <span class="track-tag">Track • Fundamental</span>
-                <h3 class="track-title">Intro to Dante</h3>
-                <p class="track-desc">Exploration des vulnérabilités réseaux et initiation aux vecteurs d'attaque classiques sur environnement Pro Lab.</p>
+                <span class="track-category">Security Analyst</span>
+                <h3 class="track-title">SOC Analyst Track</h3>
+                <p class="track-desc">Maîtrise de la détection d'incidents, analyse de logs et monitoring réseau sur des environnements complexes.</p>
                 <div class="track-footer">
-                    <span class="difficulty easy">LEVEL: EASY</span>
-                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                    <span class="diff medium">DIFF: MEDIUM</span>
+                    <span style="font-size: 0.8rem; color: var(--accent);">Détails</span>
                 </div>
             </div>
         </article>
@@ -206,15 +221,15 @@
         <!-- TRACK 2 -->
         <article class="track-card">
             <div class="track-image">
-                <img src="https://hackthebox.com" alt="SOC Analyst">
+                <img src="https://hackthebox.com" alt="Intro to Cyber">
             </div>
             <div class="track-info">
-                <span class="track-tag">Machine • Linux</span>
-                <h3 class="track-title">Basics of Web Hacking</h3>
-                <p class="track-desc">Maîtrise des injections SQL, XSS et exploitation de mauvaises configurations de serveurs web.</p>
+                <span class="track-category">Offensive</span>
+                <h3 class="track-title">Intro to Cyber</h3>
+                <p class="track-desc">Apprentissage des bases du hacking éthique, de l'énumération à l'exploitation finale du système.</p>
                 <div class="track-footer">
-                    <span class="difficulty medium">LEVEL: MEDIUM</span>
-                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                    <span class="diff easy">DIFF: EASY</span>
+                    <span style="font-size: 0.8rem; color: var(--accent);">Détails</span>
                 </div>
             </div>
         </article>
@@ -225,12 +240,12 @@
                 <img src="https://hackthebox.com" alt="Active Directory">
             </div>
             <div class="track-info">
-                <span class="track-tag">Certification • Lab</span>
+                <span class="track-category">Infrastructure</span>
                 <h3 class="track-title">Active Directory Lab</h3>
-                <p class="track-desc">Attaques Kerberoasting, Bloodhound et élévation de privilèges dans un domaine Windows.</p>
+                <p class="track-desc">Attaques sur domaines Windows : Kerberoasting, AS-REP Roasting et élévation de privilèges.</p>
                 <div class="track-footer">
-                    <span class="difficulty hard">LEVEL: INSANE</span>
-                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                    <span class="diff hard">DIFF: INSANE</span>
+                    <span style="font-size: 0.8rem; color: var(--accent);">Détails</span>
                 </div>
             </div>
         </article>
@@ -239,7 +254,7 @@
 </div>
 
 <footer>
-    © 2026 | AGENTPATHOGENE | ALL RIGHTS RESERVED
+    © 2026 | AGENTPATHOGENE | TOUS DROITS RÉSERVÉS
 </footer>
 
 </body>
