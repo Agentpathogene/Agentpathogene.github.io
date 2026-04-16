@@ -3,157 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcours | Progression</title>
+    <title>Parcours Professionnel | RoadMap</title>
     <style>
         :root {
-            --bg-color: #050507;
-            --neon1: #00f5ff;
-            --neon2: #0077ff;
-            --text: #e0e0e0;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg-color: #0a0a0c;
+            --accent: #00f5ff;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --line-color: rgba(0, 245, 255, 0.15);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        /* Navigation Minimaliste */
         nav {
             width: 100%;
-            padding: 20px;
-            text-align: center;
-            background: rgba(5, 5, 7, 0.9);
-            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
-            position: sticky;
+            padding: 25px 0;
+            background: rgba(10, 10, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line-color);
+            position: fixed;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            text-align: center;
         }
 
         nav a {
-            color: var(--text);
+            color: var(--text-dim);
             text-decoration: none;
-            margin: 
-
-0 20px;
-            font-weight: bold;
+            margin: 0 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 2px;
             transition: 0.3s;
         }
 
-        nav a:hover { color: var(--neon1); }
+        nav a:hover, nav a.active { color: var(--accent); }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            padding: 50px 20px;
-            position: relative;
+            padding: 150px 20px 100px;
         }
 
+        header { text-align: center; margin-bottom: 80px; }
+        
         h1 {
-            text-align: center;
-            color: var(--neon1);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 80px;
-            text-shadow: 0 0 15px var(--neon1);
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
-        /* Le Chemin (Ligne centrale) */
+        .status-bar {
+            font-family: monospace;
+            color: var(--accent);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Timeline Engine */
         .roadmap {
             position: relative;
-            padding: 20px 0;
+            margin-top: 50px;
         }
 
+        /* Ligne verticale */
         .roadmap::before {
             content: '';
             position: absolute;
             left: 50%;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--neon1), var(--neon2));
             transform: translateX(-50%);
-            box-shadow: 0 0 15px var(--neon1);
+            width: 1px;
+            height: 100%;
+            background: var(--line-color);
         }
 
-        /* Les Noeuds (Ronds) */
-        .node {
+        .step {
             position: relative;
             width: 100%;
-            margin-bottom: 100px;
+            margin-bottom: 120px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        .node-circle {
-            width: 60px;
-            height: 60px;
+        /* Le Rond (Point de redirection) */
+        .dot {
+            width: 16px;
+            height: 16px;
             background: var(--bg-color);
-            border: 3px solid var(--neon1);
+            border: 2px solid var(--accent);
             border-radius: 50%;
             z-index: 2;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--neon1);
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
-        .node-circle:hover {
+        .dot::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .dot:hover {
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
             transform: scale(1.2);
-            box-shadow: 0 0 30px var(--neon1);
-            background: var(--neon1);
-            color: var(--bg-color);
         }
 
-        /* Label à côté du rond */
-        .node-label {
+        .dot:hover::after {
+            inset: -12px;
+            opacity: 0.5;
+        }
+
+        /* Contenu à gauche ou à droite */
+        .content {
             position: absolute;
-            width: 200px;
-            font-family: 'Courier New', monospace;
+            width: 40%;
+            transition: 0.4s;
+        }
+
+        .step:nth-child(odd) .content {
+            left: calc(50% + 40px);
+            text-align: left;
+        }
+
+        .step:nth-child(even) .content {
+            right: calc(50% + 40px);
+            text-align: right;
+        }
+
+        .date {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+
+        .desc {
             font-size: 0.9rem;
-            color: var(--neon2);
+            color: var(--text-dim);
+            line-height: 1.5;
         }
 
-        .node:nth-child(odd) .node-label { left: calc(50% + 50px); text-align: left; }
-        .node:nth-child(even) .node-label { right: calc(50% + 50px); text-align: right; }
-
-        /* Fenêtre de détails (Hidden par défaut) */
-        #details-panel {
-            position: fixed;
-            bottom: -300px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 600px;
-            background: rgba(10, 10, 15, 0.95);
-            border: 1px solid var(--neon1);
-            border-radius: 15px 15px 0 0;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: 0.5s ease-out;
-            z-index: 1000;
-            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
-        }
-
-        #details-panel.active { bottom: 0; }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-            color: var(--neon1);
-            font-weight: bold;
+        /* Footer */
+        footer {
+            padding: 50px;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -161,58 +180,52 @@
 
 <nav>
     <a href="index.html">Accueil</a>
-    <a href="parcours.html" style="color:var(--neon1)">Parcours</a>
-    <a href="projets.html">Laboratoire</a>
+    <a href="parcours.html" class="active">Parcours</a>
+    <a href="projets.html">Projets</a>
 </nav>
 
 <div class="container">
-    <h1>SKILL_TREE</h1>
+    <header>
+        <h1>Curriculum_Vitae</h1>
+        <div class="status-bar">> ARCHIVE_SÉCURISÉE_V.2.6</div>
+    </header>
 
     <div class="roadmap">
-        <!-- NODE 1 -->
-        <div class="node">
-            <div class="node-circle" onclick="showDetails('Baccalauréat', 'Option Informatique - Mention Bien. Découverte de la logique de programmation et des bases du réseau.')">01</div>
-            <div class="node-label">NIVEAU_01: BASES</div>
+        <!-- ÉTAPE 1 -->
+        <div class="step">
+            <a href="formation-bases.html" class="dot" title="Voir les détails"></a>
+            <div class="content">
+                <span class="date">2023 - 2024</span>
+                <h3 class="title">Bases de l'Informatique</h3>
+                <p class="desc">Acquisition des fondamentaux : Architecture des ordinateurs, réseaux locaux et initiation au scripting Python.</p>
+            </div>
         </div>
 
-        <!-- NODE 2 -->
-        <div class="node">
-            <div class="node-circle" onclick="showDetails('BTS Cybersécurité', 'Apprentissage du durcissement système (Linux/Windows) et analyse de trames réseau (Wireshark).')">02</div>
-            <div class="node-label">NIVEAU_02: DÉFENSE</div>
+        <!-- ÉTAPE 2 -->
+        <div class="step">
+            <a href="formation-cyber.html" class="dot" title="Voir les détails"></a>
+            <div class="content">
+                <span class="date">2024 - 2025</span>
+                <h3 class="title">Spécialisation Cyber</h3>
+                <p class="desc">Approfondissement du durcissement système, analyse de protocoles et sécurité offensive (OWASP Top 10).</p>
+            </div>
         </div>
 
-        <!-- NODE 3 -->
-        <div class="node">
-            <div class="node-circle" onclick="showDetails('Certification CCNA', 'Certification Cisco en cours. Maîtrise du routage et de la commutation sécurisée.')">03</div>
-            <div class="node-label">NIVEAU_03: RÉSEAU</div>
-        </div>
-
-        <!-- NODE 4 -->
-        <div class="node">
-            <div class="node-circle" onclick="showDetails('Stage Pentesting', 'Stage chez CyberCorp. Initiation aux tests d\'intrusion web (OWASP) et scan de vulnérabilités.')">04</div>
-            <div class="node-label">NIVEAU_04: OFFENSIF</div>
+        <!-- ÉTAPE 3 -->
+        <div class="step">
+            <a href="experiences-pro.html" class="dot" title="Voir les détails"></a>
+            <div class="content">
+                <span class="date">2025 - Présent</span>
+                <h3 class="title">Analyste SOC Junior</h3>
+                <p class="desc">Alternance centrée sur la surveillance des menaces, la gestion d'incidents et le déploiement de solutions SIEM.</p>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Panneau de détails -->
-<div id="details-panel">
-    <span class="close-btn" onclick="closeDetails()">[ FERMER ]</span>
-    <h2 id="detail-title" style="color:var(--neon1); margin-top:0;">Titre</h2>
-    <p id="detail-text">Description ici...</p>
-</div>
-
-<script>
-    function showDetails(title, text) {
-        document.getElementById('detail-title').innerText = title;
-        document.getElementById('detail-text').innerText = text;
-        document.getElementById('details-panel').classList.add('active');
-    }
-
-    function closeDetails() {
-        document.getElementById('details-panel').classList.remove('active');
-    }
-</script>
+<footer>
+    © 2026 | DOCUMENTATION OFFICIELLE | ALL RIGHTS RESERVED
+</footer>
 
 </body>
 </html>
