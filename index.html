@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: black;
+      color: #00ffff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      font-size: 2.5rem;
+      letter-spacing: 5px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    nav button {
+      background: transparent;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      padding: 10px 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    nav button:hover, .active {
+      background: #00ffff;
+      color: black;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #00ffff;
+      box-shadow: 0 0 20px #00ffff33;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .section {
+      display: none;
+    }
+
+    .active-section {
+      display: block;
+      animation: fade 0.4s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #555;
+    }
+
+    /* glitch effect */
+    .glitch {
+      position: relative;
+      color: #00ffff;
+    }
+
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+    }
+
+    .glitch::before {
+      animation: glitchTop 1s infinite;
+      color: #ff00ff;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1s infinite;
+      color: #00ff00;
+      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitchTop {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, -2px); }
+      40% { transform: translate(2px, 2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { transform: translate(0); }
+      20% { transform: translate(2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(1px, -1px); }
+      80% { transform: translate(-1px, 1px); }
+      100% { transform: translate(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+<header class="glitch" data-text="CYBER PROFILE">CYBER PROFILE</header>
+
+<nav>
+  <button onclick="showSection('profile')" class="active">Profile</button>
+  <button onclick="showSection('certif')">Certif</button>
+  <button onclick="showSection('real')">Realisations</button>
+  <button onclick="showSection('blog')">Blog</button>
+</nav>
+
+<div class="container">
+  <div id="profile" class="section active-section">
+    <h2>[ PROFILE ]</h2>
+    <p>Cybersecurity expert. Pentesting, exploit dev, reverse engineering.</p>
+  </div>
+
+  <div id="certif" class="section">
+    <h2>[ CERTIFICATIONS ]</h2>
+    <ul>
+      <li>OSCP</li>
+      <li>CEH</li>
+      <li>CISSP</li>
+    </ul>
+  </div>
+
+  <div id="real" class="section">
+    <h2>[ REALISATIONS ]</h2>
+    <p>CTF wins, exploit frameworks, advanced research.</p>
+  </div>
+
+  <div id="blog" class="section">
+    <h2>[ BLOG ]</h2>
+    <p>Write your hacking articles here.</p>
+  </div>
+</div>
+
+<footer>
+  &lt; SYSTEM ONLINE // ACCESS GRANTED &gt;
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active-section');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
