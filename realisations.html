@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisations HTB | AgentPathogene</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --accent: #00f5ff; /* Cyan néon */
+            --accent-dim: rgba(0, 245, 255, 0.15);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --card-bg: #111114;
+            --line-color: rgba(0, 245, 255, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navigation (Identique à ton code) */
+        nav {
+            width: 100%;
+            padding: 25px 0;
+            background: rgba(10, 10, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line-color);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent); }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 150px 20px 100px;
+        }
+
+        header { text-align: center; margin-bottom: 60px; }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .status-bar {
+            font-family: monospace;
+            color: var(--accent);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Grille des Réalisations */
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .track-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line-color);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .track-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.05);
+        }
+
+        .track-image {
+            width: 100%;
+            height: 180px;
+            background: #1a1a1d; /* Fallback */
+            overflow: hidden;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .track-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%) contrast(1.1);
+            transition: 0.5s;
+        }
+
+        .track-card:hover .track-image img {
+            filter: grayscale(0%) contrast(1);
+            scale: 1.05;
+        }
+
+        .track-info {
+            padding: 20px;
+        }
+
+        .track-tag {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .track-desc {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .track-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+        }
+
+        .difficulty {
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+
+        .easy { color: #50fa7b; }
+        .medium { color: #ffb86c; }
+        .hard { color: #ff5555; }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="realisations.html" class="active">Réalisations</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>HTB_Labs_Archive</h1>
+        <div class="status-bar">> ACCÈS AUX RÉALISATIONS TECHNIQUE... OK</div>
+    </header>
+
+    <div class="tracks-grid">
+        
+        <!-- TRACK 1 -->
+        <article class="track-card">
+            <div class="track-image">
+                <!-- Remplace par l'URL de ton image HTB -->
+                <img src="https://hackthebox.com" alt="Intro to Cyber">
+            </div>
+            <div class="track-info">
+                <span class="track-tag">Track • Fundamental</span>
+                <h3 class="track-title">Intro to Dante</h3>
+                <p class="track-desc">Exploration des vulnérabilités réseaux et initiation aux vecteurs d'attaque classiques sur environnement Pro Lab.</p>
+                <div class="track-footer">
+                    <span class="difficulty easy">LEVEL: EASY</span>
+                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- TRACK 2 -->
+        <article class="track-card">
+            <div class="track-image">
+                <img src="https://hackthebox.com" alt="SOC Analyst">
+            </div>
+            <div class="track-info">
+                <span class="track-tag">Machine • Linux</span>
+                <h3 class="track-title">Basics of Web Hacking</h3>
+                <p class="track-desc">Maîtrise des injections SQL, XSS et exploitation de mauvaises configurations de serveurs web.</p>
+                <div class="track-footer">
+                    <span class="difficulty medium">LEVEL: MEDIUM</span>
+                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- TRACK 3 -->
+        <article class="track-card">
+            <div class="track-image">
+                <img src="https://hackthebox.com" alt="Active Directory">
+            </div>
+            <div class="track-info">
+                <span class="track-tag">Certification • Lab</span>
+                <h3 class="track-title">Active Directory Lab</h3>
+                <p class="track-desc">Attaques Kerberoasting, Bloodhound et élévation de privilèges dans un domaine Windows.</p>
+                <div class="track-footer">
+                    <span class="difficulty hard">LEVEL: INSANE</span>
+                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Détails →</a>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 | AGENTPATHOGENE | ALL RIGHTS RESERVED
+</footer>
+
+</body>
+</html>
