@@ -1,99 +1,172 @@
 <!DOCTYPE html>
-      padding: 30px;
-      color: #888;
-    }
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Cybersecurity Student</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --neon1: #00f5ff;
+            --neon2: #0077ff;
+            --text: #e0e0e0;
+        }
 
-    /* scanlines */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-    }
-  </style>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--neon1);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px var(--neon1);
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--neon1);
+            text-shadow: 0 0 15px var(--neon1);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--neon2);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+            border-color: var(--neon1);
+        }
+
+        h2 {
+            color: var(--neon1);
+            border-left: 4px solid var(--neon1);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: "→ ";
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Effet de scanline (lignes horizontales) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.01),
+                rgba(255, 255, 255, 0.01) 1px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
 </head>
-
 <body>
 
 <nav>
-  <div class="logo">CYBER//NEON</div>
-  <ul>
-    <li><a href="#profile">Profil</a></li>
-    <li><a href="#certifs">Certifs</a></li>
-    <li><a href="#projects">Réalisations</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <a href="#about">À propos</a>
+  <a href="#projects">Projets</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <header>
-  <h1>Mon Cyber Portfolio</h1>
-  <p class="subtitle">Cybersecurity Student • Pentesting • Web Security</p>
+  <h1>Mon Portfolio</h1>
+  <p class="subtitle">> Cybersecurity_Student_</p>
 </header>
 
-<section id="profile">
-  <h2 class="title">Profil</h2>
-  <div class="profile">
-    <img class="avatar" src="https://via.placeholder.com/140" alt="avatar" />
-    <div class="card">
-      <p>Étudiant en cybersécurité, passionné par le pentesting, Linux et la sécurité web.</p>
-    </div>
-  </div>
-</section>
+<main>
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>Je débute en cybersécurité et j’apprends le pentesting et la sécurité web. Passionné par l'éthique du hacking et la défense des systèmes.</p>
+      </div>
+    </section>
 
-<section id="certifs">
-  <h2 class="title">Certifications</h2>
-  <div class="grid">
-    <div class="card">HTML / CSS</div>
-    <div class="card">JavaScript Basics</div>
-    <div class="card">Git & GitHub</div>
-    <div class="card">Cybersecurity Fundamentals</div>
-  </div>
-</section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <ul>
+          <li><strong>CTF Challenges</strong> : Résolution de box sur TryHackMe.</li>
+          <li><strong>Web Security</strong> : Apprentissage des failles OWASP Top 10.</li>
+          <li><strong>Hardening Linux</strong> : Configuration de serveurs sécurisés.</li>
+        </ul>
+      </div>
+    </section>
 
-<section id="projects">
-  <h2 class="title">Réalisations</h2>
-  <div class="grid">
-    <div class="card">CTF Challenges</div>
-    <div class="card">Web Security Labs</div>
-    <div class="card">Linux Practice Environments</div>
-  </div>
-</section>
-
-<section id="blog">
-  <h2 class="title">Blog</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Début en cybersécurité</h3>
-      <p>Mon apprentissage du hacking éthique et des bases du réseau.</p>
-    </div>
-    <div class="card">
-      <h3>Linux & Terminal</h3>
-      <p>Découverte des commandes essentielles pour pentesting.</p>
-    </div>
-    <div class="card">
-      <h3>Web Security</h3>
-      <p>Comprendre les failles XSS et SQL Injection.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="title">Contact</h2>
-  <div class="card">
-    <p>Email: your@email.com</p>
-  </div>
-</section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <span style="color:var(--neon2)">votre@email.com</span></p>
+      </div>
+    </section>
+</main>
 
 <footer>
-  © 2026 Cyber Neon Portfolio
+  © 2026 Mon Portfolio | Built for Security
 </footer>
 
 </body>
