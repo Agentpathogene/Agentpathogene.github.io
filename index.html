@@ -1,77 +1,79 @@
+
 <!DOCTYPE html>
-@media(min-width:700px){
-  .grid{grid-template-columns:1fr 1fr 1fr;}
+  color:white;
+  padding:20px;
+  text-align:center;
 }
 
-.bar{
+nav{
   background:#222;
-  height:8px;
-  border-radius:5px;
+  text-align:center;
+  padding:10px;
 }
 
-.fill{
-  background:#00bfff;
-  height:100%;
+nav a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+}
+
+section{
+  max-width:800px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
 }
 
 footer{
   text-align:center;
-  padding:20px;
-  color:#777;
+  padding:15px;
+  background:#111;
+  color:white;
+  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>Cyber Portfolio</h1>
-  <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
 <header>
-  <h2>Cybersecurity Student</h2>
-  <p>Learning hacking & security</p>
+  <h1>Mon Portfolio</h1>
+  <p>Cybersecurity Student</p>
 </header>
 
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
 <section id="about">
-  <h3>About</h3>
-  <div class="card">Beginner in cybersecurity learning pentesting and system security.</div>
+  <h2>About Me</h2>
+  <p>Je débute en cybersécurité et j’apprends le pentesting et la sécurité web.</p>
 </section>
 
 <section id="projects">
-  <h3>Projects</h3>
-  <div class="grid">
-    <div class="card">Web pentest practice</div>
-    <div class="card">CTF challenges</div>
-    <div class="card">Security notes</div>
-  </div>
-</section>
-
-<section id="skills">
-  <h3>Skills</h3>
-  Linux
-  <div class="bar"><div class="fill" style="width:70%"></div></div>
-  <br>
-  Networking
-  <div class="bar"><div class="fill" style="width:60%"></div></div>
+  <h2>Projects</h2>
+  <ul>
+    <li>CTF challenges</li>
+    <li>Web security basics</li>
+    <li>Linux practice</li>
+  </ul>
 </section>
 
 <section id="contact">
-  <h3>Contact</h3>
-  <div class="card">
-    Email: your@email.com<br>
-    GitHub: github.com/yourname
-  </div>
+  <h2>Contact</h2>
+  <p>Email: your@email.com</p>
 </section>
 
 <footer>
-  © 2026 Cyber Portfolio
+  <p>© 2026 Mon Portfolio</p>
 </footer>
 
 </body>
