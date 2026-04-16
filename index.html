@@ -7,167 +7,240 @@
     <title>Portfolio | Cybersecurity Student</title>
     <style>
         :root {
-            --bg-color: #0a0a0c;
+            --bg-color: #050507;
             --neon1: #00f5ff;
             --neon2: #0077ff;
             --text: #e0e0e0;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 245, 255, 0.2);
         }
+
+        /* Animations Clés */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         body {
             background-color: var(--bg-color);
             color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Navbar avec flou progressif */
         nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            position: sticky;
+            background: rgba(5, 5, 7, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
 
         nav a {
-            color: var(--neon1);
+            color: var(--text);
             text-decoration: none;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: 0.3s;
         }
 
-        nav a:hover {
-            text-shadow: 0 0 10px var(--neon1);
-        }
+        nav a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 
         header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 20px;
+            padding-top: 60px;
+        }
+
+        /* Zone Image de Profil */
+        .profile-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--neon1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px var(--border);
+            animation: float 4s ease-in-out infinite;
+            background: #111; /* Placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             color: var(--neon1);
-            text-shadow: 0 0 15px var(--neon1);
-            margin-bottom: 5px;
+            margin: 0;
+            text-transform: uppercase;
         }
 
+        /* Effet Typing */
         .subtitle {
             font-size: 1.2rem;
             color: var(--neon2);
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            border-right: .15em solid var(--neon1);
+            white-space: nowrap;
+            margin: 10px auto;
+            width: fit-content;
+            animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
         }
 
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 25px;
-        }
+        main { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        section {
-            margin-bottom: 40px;
+        section { 
+            margin-bottom: 80px; 
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
         }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(0, 245, 255, 0.05);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
-            border-color: var(--neon1);
-        }
+        
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
 
         h2 {
             color: var(--neon1);
-            border-left: 4px solid var(--neon1);
-            padding-left: 15px;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
-        ul {
-            list-style: "→ ";
-            padding-left: 20px;
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--neon1);
+            transform: scale(1.02);
+        }
+
+        /* Grille de projets avec images */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 150px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-size: 0.8rem;
+            border: 1px dashed var(--border);
+        }
+
+        ul { list-style: none; padding: 0; }
+        ul li { margin-bottom: 15px; display: flex; align-items: center; }
+        ul li::before { content: "01"; color: var(--neon1); font-size: 0.7rem; margin-right: 15px; font-family: monospace; }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
+            border-top: 1px solid var(--border);
             color: #555;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
         }
 
-        /* Effet de scanline (lignes horizontales) */
-        body::before {
+        /* Scanline Effect */
+        body::after {
             content: "";
             position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.01),
-                rgba(255, 255, 255, 0.01) 1px,
-                transparent 2px,
-                transparent 4px
-            );
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 4px, 3px 100%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 1001;
         }
     </style>
 </head>
 <body>
 
 <nav>
-  <a href="#about">À propos</a>
-  <a href="#projects">Projets</a>
-  <a href="#contact">Contact</a>
+  <a href="#about">Infos</a>
+  <a href="#projects">Laboratoire</a>
+  <a href="#contact">Terminal</a>
 </nav>
 
 <header>
-  <h1>Mon Portfolio</h1>
-  <p class="subtitle">> Cybersecurity_Student_</p>
+  <!-- REMPLACE LE LIEN SRC PAR TON IMAGE -->
+  <div class="profile-container">
+    <img src="https://placeholder.com" alt="Profile">
+  </div>
+  <h1>MON PORTFOLIO</h1>
+  <p class="subtitle">> Analyste_Cyber_Junior_en_formation</p>
 </header>
 
 <main>
     <section id="about">
-      <h2>About Me</h2>
+      <h2>IDENTITÉ_DU_SYSTÈME</h2>
       <div class="card">
-        <p>Je débute en cybersécurité et j’apprends le pentesting et la sécurité web. Passionné par l'éthique du hacking et la défense des systèmes.</p>
+        <p>Étudiant passionné par la <strong>sécurité offensive</strong> et la <strong>protection des données</strong>. Actuellement focalisé sur l'automatisation des scripts de défense et l'analyse de malwares.</p>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <ul>
-          <li><strong>CTF Challenges</strong> : Résolution de box sur TryHackMe.</li>
-          <li><strong>Web Security</strong> : Apprentissage des failles OWASP Top 10.</li>
-          <li><strong>Hardening Linux</strong> : Configuration de serveurs sécurisés.</li>
-        </ul>
+      <h2>PROJETS_DÉPLOYÉS</h2>
+      <div class="project-grid">
+        <div class="card">
+            <!-- PLACE TA CAPTURE D'ECRAN ICI -->
+            <div class="project-image">IMAGE_DU_PROJET_1 [1200x800]</div>
+            <h3>CTF Write-ups</h3>
+            <p>Documentation détaillée de l'exploitation de vulnérabilités sur des environnements contrôlés.</p>
+        </div>
+        <div class="card">
+            <div class="project-image">IMAGE_DU_PROJET_2 [1200x800]</div>
+            <h3>Sec-Audit Script</h3>
+            <p>Développement d'un outil en Python pour auditer la configuration réseau locale.</p>
+        </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Email: <span style="color:var(--neon2)">votre@email.com</span></p>
+      <h2>ÉTABLIR_CONNEXION</h2>
+      <div class="card" style="text-align: center;">
+        <p>Prêt pour de nouveaux challenges ou collaborations.</p>
+        <p style="color: var(--neon1); font-family: monospace; font-size: 1.2rem;">SSH -> votre@email.com</p>
       </div>
     </section>
 </main>
 
 <footer>
-  © 2026 Mon Portfolio | Built for Security
+  SYSTEM_STATUS: ONLINE | © 2026 | DESIGNED_BY_AI_FOR_CYBER
 </footer>
 
 </body>
