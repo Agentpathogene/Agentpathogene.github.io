@@ -1,4 +1,29 @@
 <!DOCTYPE html>
+@media(min-width:700px){
+  .grid{grid-template-columns:1fr 1fr 1fr;}
+}
+
+.bar{
+  background:#222;
+  height:8px;
+  border-radius:5px;
+}
+
+.fill{
+  background:#00bfff;
+  height:100%;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
 <nav>
   <h1>Cyber Portfolio</h1>
   <div>
@@ -11,63 +36,42 @@
 
 <header>
   <h2>Cybersecurity Student</h2>
-  <p>Focused on ethical hacking, pentesting & digital security</p>
-  <a href="#contact" class="button">Contact Me</a>
+  <p>Learning hacking & security</p>
 </header>
 
 <section id="about">
-  <h3>About Me</h3>
-  <div class="card">
-    Beginner in cybersecurity with strong motivation to learn penetration testing and system security. Practicing daily on real platforms.
-  </div>
+  <h3>About</h3>
+  <div class="card">Beginner in cybersecurity learning pentesting and system security.</div>
 </section>
 
 <section id="projects">
   <h3>Projects</h3>
   <div class="grid">
-    <div class="card">
-      <strong>Web Pentesting</strong>
-      <p>Learning XSS, SQL Injection and common vulnerabilities</p>
-    </div>
-    <div class="card">
-      <strong>CTF Challenges</strong>
-      <p>Hands-on practice on TryHackMe & HackTheBox</p>
-    </div>
-    <div class="card">
-      <strong>Writeups</strong>
-      <p>Documenting vulnerabilities and solutions</p>
-    </div>
+    <div class="card">Web pentest practice</div>
+    <div class="card">CTF challenges</div>
+    <div class="card">Security notes</div>
   </div>
 </section>
 
 <section id="skills">
   <h3>Skills</h3>
-
-  <div class="skill">Linux
-    <div class="bar"><div class="fill" style="width:70%"></div></div>
-  </div>
-
-  <div class="skill">Networking
-    <div class="bar"><div class="fill" style="width:60%"></div></div>
-  </div>
-
-  <div class="skill">Web Security
-    <div class="bar"><div class="fill" style="width:50%"></div></div>
-  </div>
-
+  Linux
+  <div class="bar"><div class="fill" style="width:70%"></div></div>
+  <br>
+  Networking
+  <div class="bar"><div class="fill" style="width:60%"></div></div>
 </section>
 
 <section id="contact">
   <h3>Contact</h3>
-  <div class="card contact">
-    <p>Email: your@email.com</p>
-    <p>GitHub: github.com/yourname</p>
-    <p>TryHackMe: tryhackme.com/p/yourname</p>
+  <div class="card">
+    Email: your@email.com<br>
+    GitHub: github.com/yourname
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Cyber Portfolio</p>
+  © 2026 Cyber Portfolio
 </footer>
 
 </body>
