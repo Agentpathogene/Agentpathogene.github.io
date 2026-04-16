@@ -1,78 +1,99 @@
 <!DOCTYPE html>
-  color:white;
-  padding:20px;
-  text-align:center;
-}
+      padding: 30px;
+      color: #888;
+    }
 
-nav{
-  background:#222;
-  text-align:center;
-  padding:10px;
-}
-
-nav a{
-  color:white;
-  margin:0 10px;
-  text-decoration:none;
-}
-
-section{
-  max-width:800px;
-  margin:20px auto;
-  background:white;
-  padding:20px;
-  border-radius:8px;
-}
-
-h2{
-  border-bottom:2px solid #ddd;
-  padding-bottom:5px;
-}
-
-footer{
-  text-align:center;
-  padding:15px;
-  background:#111;
-  color:white;
-  margin-top:20px;
-}
-</style>
+    /* scanlines */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Mon Portfolio</h1>
-  <p>Cybersecurity Student</p>
-</header>
-
 <nav>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
+  <div class="logo">CYBER//NEON</div>
+  <ul>
+    <li><a href="#profile">Profil</a></li>
+    <li><a href="#certifs">Certifs</a></li>
+    <li><a href="#projects">Réalisations</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>Je débute en cybersécurité et j’apprends le pentesting et la sécurité web.</p>
+<header>
+  <h1>Mon Cyber Portfolio</h1>
+  <p class="subtitle">Cybersecurity Student • Pentesting • Web Security</p>
+</header>
+
+<section id="profile">
+  <h2 class="title">Profil</h2>
+  <div class="profile">
+    <img class="avatar" src="https://via.placeholder.com/140" alt="avatar" />
+    <div class="card">
+      <p>Étudiant en cybersécurité, passionné par le pentesting, Linux et la sécurité web.</p>
+    </div>
+  </div>
+</section>
+
+<section id="certifs">
+  <h2 class="title">Certifications</h2>
+  <div class="grid">
+    <div class="card">HTML / CSS</div>
+    <div class="card">JavaScript Basics</div>
+    <div class="card">Git & GitHub</div>
+    <div class="card">Cybersecurity Fundamentals</div>
+  </div>
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
-  <ul>
-    <li>CTF challenges</li>
-    <li>Web security basics</li>
-    <li>Linux practice</li>
-  </ul>
+  <h2 class="title">Réalisations</h2>
+  <div class="grid">
+    <div class="card">CTF Challenges</div>
+    <div class="card">Web Security Labs</div>
+    <div class="card">Linux Practice Environments</div>
+  </div>
+</section>
+
+<section id="blog">
+  <h2 class="title">Blog</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Début en cybersécurité</h3>
+      <p>Mon apprentissage du hacking éthique et des bases du réseau.</p>
+    </div>
+    <div class="card">
+      <h3>Linux & Terminal</h3>
+      <p>Découverte des commandes essentielles pour pentesting.</p>
+    </div>
+    <div class="card">
+      <h3>Web Security</h3>
+      <p>Comprendre les failles XSS et SQL Injection.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>Email: your@email.com</p>
+  <h2 class="title">Contact</h2>
+  <div class="card">
+    <p>Email: your@email.com</p>
+  </div>
 </section>
 
 <footer>
-  <p>© 2026 Mon Portfolio</p>
+  © 2026 Cyber Neon Portfolio
 </footer>
 
 </body>
