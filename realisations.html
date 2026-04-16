@@ -7,18 +7,18 @@
     <style>
         :root {
             --bg-color: #0a0a0c;
-            --accent: #00f5ff;
-            --accent-dim: rgba(0, 245, 255, 0.1);
+            --accent: #00e63b; /* Ton vert sombre vibrant */
+            --accent-dim: rgba(0, 230, 59, 0.1);
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
             --card-bg: #111114;
-            --line-color: rgba(0, 245, 255, 0.15);
+            --line-color: rgba(0, 230, 59, 0.15);
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Courier New', monospace; /* Style terminal */
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -26,7 +26,7 @@
             min-height: 100vh;
         }
 
-        /* NAVIGATION - Identique à ta Roadmap */
+        /* NAVIGATION */
         nav {
             width: 100%;
             padding: 25px 0;
@@ -49,7 +49,10 @@
             transition: 0.3s;
         }
 
-        nav a:hover, nav a.active { color: var(--accent); }
+        nav a:hover, nav a.active { 
+            color: var(--accent); 
+            text-shadow: 0 0 8px var(--accent);
+        }
 
         /* CONTAINER */
         .container {
@@ -63,10 +66,11 @@
         
         h1 {
             font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: -1px;
+            font-weight: bold;
+            letter-spacing: 2px;
             margin-bottom: 10px;
             text-transform: uppercase;
+            color: var(--accent);
         }
 
         .status-bar {
@@ -74,6 +78,12 @@
             color: var(--accent);
             font-size: 0.8rem;
             opacity: 0.8;
+        }
+
+        /* ANIMATION SCANLINE */
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
         }
 
         /* GRID DES TRACKS */
@@ -92,36 +102,52 @@
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .track-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 10px 40px rgba(0, 230, 59, 1.0);
+            box-shadow: 0 0 20px rgba(0, 230, 59, 0.3);
         }
 
-        /* IMAGE STYLE */
+        /* IMAGE STYLE AVEC EFFET HACK */
         .track-image {
-            width: 
-
-100%;
+            width: 100%;
             height: 200px;
             background: #1a1a1d;
             position: relative;
             overflow: hidden;
         }
 
+        .track-image::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .track-card:hover .track-image::after {
+            animation: scan 2s linear infinite;
+            opacity: 0.4;
+        }
+
         .track-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7;
+            opacity: 0.6;
             transition: 0.5s;
+            filter: grayscale(80%);
         }
 
         .track-card:hover .track-image img {
             opacity: 1;
             transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         /* CARD CONTENT */
@@ -161,7 +187,7 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            border-top: 1px solid rgba(0, 255, 65, 1.0);
+            border-top: 1px solid var(--line-color);
         }
 
         .diff {
@@ -170,7 +196,7 @@
             font-weight: bold;
         }
 
-        .easy { color: #00ff41; }
+        .easy { color: var(--accent); }
         .medium { color: #ff9d00; }
         .hard { color: #ff3e3e; }
 
@@ -189,7 +215,9 @@
 
 <nav>
     <a href="index.html">Accueil</a>
-    <a href="about.html">Parcours</a>
+    <a href="about.html">Parcours</
+
+a>
     <a href="realisations.html" class="active">Réalisations</a>
     <a href="contact.html">Contact</a>
 </nav>
@@ -197,7 +225,7 @@
 <div class="container">
     <header>
         <h1>CERTIFICATIONS</h1>
-        <div class="status-bar">> Certifications et réalisations ...</div>
+        <div class="status-bar">> root@agentpathogene: access_granted...</div>
     </header>
 
     <div class="tracks-grid">
@@ -213,7 +241,7 @@
                 <p class="track-desc">Maîtrise des failles courantes des applications web , cette forteresse est un challenge proposee par l'entreprise akerva sur la platforme hack the box.</p>
                 <div class="track-footer">
                     <span class="diff easy">DIFF: EASY</span>
-                    <span style="font-size: 0.8rem; color: var(--accent);">https://app.hackthebox.com/users/3168055</span>
+                    <span style="font-size: 0.8rem; color: var(--accent);">https://hackthebox.com</span>
                 </div>
             </div>
         </article>
@@ -259,3 +287,4 @@
 
 </body>
 </html>
+
