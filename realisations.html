@@ -6,19 +6,19 @@
     <title>Réalisations HTB | AgentPathogene</title>
     <style>
         :root {
-            --bg-color: #0a0a0c;
-            --accent: #00e63b; /* Ton vert sombre vibrant */
-            --accent-dim: rgba(0, 230, 59, 0.1);
+            --bg-color: #05070a;
+            --accent: #00f5ff; /* Bleu Cyber net */
+            --accent-dim: rgba(0, 245, 255, 0.15);
             --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --card-bg: #111114;
-            --line-color: rgba(0, 230, 59, 0.15);
+            --text-dim: #94a3b8;
+            --card-bg: #0f172a;
+            --line-color: rgba(0, 245, 255, 0.2);
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Courier New', monospace; /* Style terminal */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -29,9 +29,9 @@
         /* NAVIGATION */
         nav {
             width: 100%;
-            padding: 25px 0;
-            background: rgba(10, 10, 12, 0.9);
-            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            background: rgba(5, 7, 10, 0.9);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--line-color);
             position: fixed;
             top: 0;
@@ -43,96 +43,97 @@
             color: var(--text-dim);
             text-decoration: none;
             margin: 0 20px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             transition: 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover, nav a.active { 
             color: var(--accent); 
-            text-shadow: 0 0 8px var(--accent);
         }
 
         /* CONTAINER */
         .container {
             max-width: 1100px;
             width: 100%;
-            padding: 150px 20px 100px;
+            padding: 140px 20px 80px;
             box-sizing: border-box;
         }
 
-        header { text-align: center; margin-bottom: 60px; }
+        header { text-align: center; margin-bottom: 50px; }
         
         h1 {
-            font-size: 2.2rem;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            color: var(--accent);
+            color: var(--text-main);
         }
 
         .status-bar {
             font-family: monospace;
             color: var(--accent);
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* ANIMATION SCANLINE */
-        @keyframes scan {
-            0% { top: -100%; }
-            100% { top: 100%; }
+        /* ANIMATIONS */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(400%); }
         }
 
         /* GRID DES TRACKS */
         .tracks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .track-card {
             background: var(--card-bg);
             border: 1px solid var(--line-color);
-            border-radius: 8px;
+            border-radius: 4px;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+            transition: all 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
             position: relative;
         }
 
+        /* Animation de bordure au survol */
         .track-card:hover {
-            transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 230, 59, 0.3);
+            transform: translateY(-5px);
         }
 
-        /* IMAGE STYLE AVEC EFFET HACK */
+        /* IMAGE STYLE - Pas d'ombre ici */
         .track-image {
             width: 100%;
-            height: 200px;
-            background: #1a1a1d;
+            height: 190px;
+            background: #000;
             position: relative;
             overflow: hidden;
         }
 
+        /* Effet scan discret */
         .track-image::after {
             content: "";
             position: absolute;
-            width: 100%;
-            height: 20px;
-            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
             opacity: 0;
             z-index: 2;
         }
 
         .track-card:hover .track-image::after {
-            animation: scan 2s linear infinite;
-            opacity: 0.4;
+            animation: scanline 2s linear infinite;
+            opacity: 0.5;
         }
 
         .track-image img {
@@ -140,37 +141,34 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.6;
-            transition: 0.5s;
-            filter: grayscale(80%);
+            transition: 0.5s ease;
         }
 
         .track-card:hover .track-image img {
-            opacity: 1;
-            transform: scale(1.05);
-            filter: grayscale(0%);
+            opacity: 0.9;
+            transform: scale(1.03);
         }
 
         /* CARD CONTENT */
         .track-info {
             padding: 25px;
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .track-category {
             font-family: monospace;
             font-size: 0.7rem;
             color: var(--accent);
+            font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: block;
         }
 
         .track-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin: 0 0 12px 0;
-            color: var(--text-main);
+            font-weight: 600;
         }
 
         .track-desc {
@@ -178,7 +176,6 @@
             color: var(--text-dim);
             line-height: 1.6;
             margin-bottom: 20px;
-            flex-grow: 1;
         }
 
         /* CARD FOOTER */
@@ -194,20 +191,26 @@
             font-family: monospace;
             font-size: 0.75rem;
             font-weight: bold;
+            padding: 2px 8px;
+            background: var(--accent-dim);
+            border-radius: 3px;
         }
 
-        .easy { color: var(--accent); }
+        .easy { color: #
+
+00f5ff; }
         .medium { color: #ff9d00; }
         .hard { color: #ff3e3e; }
 
         /* FOOTER */
         footer {
-            margin-top: auto;
+            margin-top: 80px;
             padding: 40px;
-            font-size: 0.7rem;
-            color: #444;
-            letter-spacing: 1px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
             text-align: center;
+            border-top: 1px solid var(--line-color);
+            width: 100%;
         }
     </style>
 </head>
@@ -215,17 +218,15 @@
 
 <nav>
     <a href="index.html">Accueil</a>
-    <a href="about.html">Parcours</
-
-a>
+    <a href="about.html">Parcours</a>
     <a href="realisations.html" class="active">Réalisations</a>
     <a href="contact.html">Contact</a>
 </nav>
 
 <div class="container">
     <header>
-        <h1>CERTIFICATIONS</h1>
-        <div class="status-bar">> root@agentpathogene: access_granted...</div>
+        <h1>RÉALISATIONS TECHNIQUES</h1>
+        <div class="status-bar">[ Analyst_Portfolio_Access: Granted ]</div>
     </header>
 
     <div class="tracks-grid">
@@ -241,7 +242,7 @@ a>
                 <p class="track-desc">Maîtrise des failles courantes des applications web , cette forteresse est un challenge proposee par l'entreprise akerva sur la platforme hack the box.</p>
                 <div class="track-footer">
                     <span class="diff easy">DIFF: EASY</span>
-                    <span style="font-size: 0.8rem; color: var(--accent);">https://hackthebox.com</span>
+                    <span style="font-size: 0.75rem; color: var(--accent);">HTB-ID: 3168055</span>
                 </div>
             </div>
         </article>
@@ -257,7 +258,7 @@ a>
                 <p class="track-desc">Apprentissage des bases du hacking éthique, de l'énumération à l'exploitation finale du système.</p>
                 <div class="track-footer">
                     <span class="diff easy">DIFF: EASY</span>
-                    <span style="font-size: 0.8rem; color: var(--accent);">Détails</span>
+                    <span style="font-size: 0.75rem; color: var(--accent);">Détails</span>
                 </div>
             </div>
         </article>
@@ -273,7 +274,7 @@ a>
                 <p class="track-desc">Attaques sur domaines Windows : Kerberoasting, AS-REP Roasting et élévation de privilèges.</p>
                 <div class="track-footer">
                     <span class="diff hard">DIFF: INSANE</span>
-                    <span style="font-size: 0.8rem; color: var(--accent);">Détails</span>
+                    <span style="font-size: 0.75rem; color: var(--accent);">Détails</span>
                 </div>
             </div>
         </article>
@@ -282,9 +283,10 @@ a>
 </div>
 
 <footer>
-    © 2026 | AGENTPATHOGENE | TOUS DROITS RÉSERVÉS
+    © 2026 | AGENTPATHOGENE | SÉCURITÉ OFFENSIVE
 </footer>
 
 </body>
 </html>
+
 
