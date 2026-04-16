@@ -1,60 +1,52 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Profile</title>
-
-<style>
-body {
-  margin: 0;
-  background: #000;
-  color: #00f7ff;
-  font-family: "Courier New", monospace;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  border-bottom: 1px solid #00f7ff;
+  color: #00c3ff;
+  font-size: 20px;
 }
 
 nav a {
-  color: #00f7ff;
+  color: #ccc;
   margin-left: 20px;
   text-decoration: none;
+  font-size: 14px;
 }
 
-nav a:hover { color: #fff; }
+nav a:hover {
+  color: #00c3ff;
+}
 
-section { padding: 40px; }
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-h1, h2, h3 {
-  text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
+h2 {
+  color: #00c3ff;
+  margin-bottom: 15px;
 }
 
 .card {
-  margin-top: 15px;
+  background: #111;
   padding: 15px;
-  border: 1px solid #00f7ff33;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.5);
-  transition: 0.3s;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #222;
+  transition: 0.2s;
 }
 
 .card:hover {
-  box-shadow: 0 0 15px #00f7ff;
-  transform: translateY(-3px);
+  border-color: #00c3ff;
 }
 
-ul { padding-left: 20px; }
+ul {
+  padding-left: 20px;
+}
 
 footer {
   text-align: center;
-  margin: 50px 0 20px;
-  color: #777;
-  font-size: 0.8rem;
+  padding: 30px;
+  color: #666;
+  font-size: 13px;
 }
 </style>
 </head>
@@ -62,7 +54,7 @@ footer {
 <body>
 
 <nav>
-  <h1>CYBER PROFILE</h1>
+  <h1>Cyber Profile</h1>
   <div>
     <a href="#profile">Profile</a>
     <a href="#projects">Projects</a>
@@ -73,32 +65,32 @@ footer {
 <section id="profile">
   <h2>Profile</h2>
   <div class="card">
-    Cybersecurity specialist focused on offensive security, penetration testing, and exploit development.
+    Cybersecurity beginner passionate about ethical hacking, learning penetration testing and system security.
   </div>
 
-  <h3>Certifications</h3>
+  <h2>Certifications</h2>
   <ul>
-    <li>OSCP - Offensive Security Certified Professional</li>
-    <li>CEH - Certified Ethical Hacker</li>
-    <li>CISSP - Security Professional</li>
+    <li>OSCP (in progress)</li>
+    <li>CEH (learning)</li>
+    <li>Security fundamentals</li>
   </ul>
 </section>
 
 <section id="projects">
   <h2>Projects</h2>
-  <div class="card">Custom exploitation toolkit</div>
-  <div class="card">CTF competitions & writeups</div>
-  <div class="card">Security research & vulnerabilities</div>
+  <div class="card">Simple web pentest labs</div>
+  <div class="card">CTF challenges (TryHackMe / HackTheBox)</div>
+  <div class="card">Basic vulnerability scanning</div>
 </section>
 
 <section id="blog">
   <h2>Blog</h2>
-  <div class="card">Post #1 - Advanced Privilege Escalation</div>
-  <div class="card">Post #2 - Web Exploitation Techniques</div>
+  <div class="card">Post #1 - What is privilege escalation</div>
+  <div class="card">Post #2 - Basics of web hacking</div>
 </section>
 
 <footer>
-  <p>&lt; SYSTEM ONLINE // ACCESS GRANTED &gt;</p>
+  <p>© 2026 - Cyber Profile</p>
 </footer>
 
 </body>
