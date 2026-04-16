@@ -1,96 +1,84 @@
 <!DOCTYPE html>
-  color: #00c3ff;
-  font-size: 20px;
-}
-
-nav a {
-  color: #ccc;
-  margin-left: 20px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: #00c3ff;
-}
-
-section {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-h2 {
-  color: #00c3ff;
-  margin-bottom: 15px;
-}
-
-.card {
-  background: #111;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #222;
-  transition: 0.2s;
-}
-
-.card:hover {
-  border-color: #00c3ff;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #666;
-  font-size: 13px;
-}
-</style>
 </head>
 
 <body>
 
 <nav>
-  <h1>Cyber Profile</h1>
+  <h1>Cyber Portfolio</h1>
   <div>
-    <a href="#profile">Profile</a>
+    <a href="#about">About</a>
     <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<section id="profile">
-  <h2>Profile</h2>
+<header>
+  <h2>Cybersecurity Student</h2>
+  <p>Learning offensive security, pentesting & system defense</p>
+  <a href="#contact" class="button">Contact me</a>
+</header>
+
+<section id="about">
+  <h3>About Me</h3>
   <div class="card">
-    Cybersecurity beginner passionate about ethical hacking, learning penetration testing and system security.
+    Motivated cybersecurity beginner focusing on penetration testing, web security and vulnerability analysis. Actively practicing on platforms like TryHackMe and Hack The Box.
   </div>
 
-  <h2>Certifications</h2>
+  <h3>Certifications</h3>
   <ul>
     <li>OSCP (in progress)</li>
-    <li>CEH (learning)</li>
-    <li>Security fundamentals</li>
+    <li>CEH (learning phase)</li>
+    <li>Networking & Security fundamentals</li>
   </ul>
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
-  <div class="card">Simple web pentest labs</div>
-  <div class="card">CTF challenges (TryHackMe / HackTheBox)</div>
-  <div class="card">Basic vulnerability scanning</div>
+  <h3>Projects</h3>
+  <div class="grid">
+    <div class="card">
+      <strong>Web Pentest Labs</strong>
+      <p>Practice of common web vulnerabilities (XSS, SQLi, etc.)</p>
+    </div>
+    <div class="card">
+      <strong>CTF Challenges</strong>
+      <p>Solving cybersecurity challenges on training platforms</p>
+    </div>
+    <div class="card">
+      <strong>Security Notes</strong>
+      <p>Personal documentation and writeups</p>
+    </div>
+  </div>
 </section>
 
-<section id="blog">
-  <h2>Blog</h2>
-  <div class="card">Post #1 - What is privilege escalation</div>
-  <div class="card">Post #2 - Basics of web hacking</div>
+<section id="skills">
+  <h3>Skills</h3>
+
+  <div class="skill">Linux
+    <div class="bar"><div class="fill" style="width: 70%"></div></div>
+  </div>
+
+  <div class="skill">Networking
+    <div class="bar"><div class="fill" style="width: 60%"></div></div>
+  </div>
+
+  <div class="skill">Web Security
+    <div class="bar"><div class="fill" style="width: 50%"></div></div>
+  </div>
+
+</section>
+
+<section id="contact">
+  <h3>Contact</h3>
+  <div class="card">
+    <p>Email: your@email.com</p>
+    <p>GitHub: github.com/yourname</p>
+    <p>TryHackMe: tryhackme.com/p/yourname</p>
+  </div>
 </section>
 
 <footer>
-  <p>© 2026 - Cyber Profile</p>
+  <p>© 2026 Cyber Portfolio — Built for GitHub Pages</p>
 </footer>
 
 </body>
