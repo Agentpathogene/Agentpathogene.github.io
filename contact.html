@@ -78,4 +78,148 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .status-bar {
+      font-family: monospace;
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin-top: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* CARD CONTACT */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line-color);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,245,255,0.05);
+      transition: 0.4s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(0,245,255,0.15);
+    }
+
+    .info {
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    .info span {
+      display: block;
+      color: var(--text-main);
+      margin-top: 5px;
+    }
+
+    form {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      background: transparent;
+      border: 1px solid var(--line-color);
+      padding: 12px;
+      border-radius: 8px;
+      color: #fff;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-dim);
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 12px;
+      border-radius: 8px;
+      color: var(--accent);
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px;
+      font-size: 0.75rem;
+      color: #4b5563;
+      letter-spacing: 2px;
+      text-align: center;
+      border-top: 1px solid var(--line-color);
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="about.html">Parcours</a>
+  <a href="realisations.html">Réalisations</a>
+  <a href="contact.html" class="active">Contact</a>
+</nav>
+
+<div class="container">
+  <header>
+    <h1>CONTACT</h1>
+    <div class="status-bar">> secure_channel_open</div>
+  </header>
+
+  <div class="contact-card">
+
+    <div class="info">
+      Email
+      <span>contact@tonsite.com</span>
+    </div>
+
+    <div class="info">
+      Téléphone
+      <span>+32 123 456 789</span>
+    </div>
+
+    <div class="info">
+      Localisation
+      <span>Belgique | Remote</span>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Nom" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Votre message" required></textarea>
+      <button type="submit">ENVOYER_MESSAGE</button>
+    </form>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 | AGENTPATHOGENE | CYBERSECURITY PORTFOLIO
+</footer>
+
+</body>
 </html>
+
+
+
