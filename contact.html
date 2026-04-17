@@ -7,120 +7,143 @@
 
   <style>
     :root {
-      --bg-color: #05080f;
-      --accent: #00f5ff; 
-      --accent-dim: rgba(0, 245, 255, 0.1);
-      --text-main: #ffffff;
-      --text-dim: #94a3b8;
-      --card-bg: #0f172a;
+      --bg-color: #050507;
+      --neon1: #00f5ff;
+      --neon2: #0077ff;
+      --text: #e0e0e0;
+      --glass: rgba(255, 255, 255, 0.03);
+      --border: rgba(0, 245, 255, 0.2);
+    }
+
+    /* ANIMATIONS PRO */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glitch {
+        0% { text-shadow: 2px 0 var(--neon1), -2px 0 var(--neon2); }
+        25% { text-shadow: -2px 0 var(--neon1), 2px 0 var(--neon2); }
+        50% { text-shadow: 2px -2px var(--neon1), -2px 2px var(--neon2); }
+        100% { text-shadow: 2px 0 var(--neon1), -2px 0 var(--neon2); }
     }
 
     body {
       background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
       margin: 0;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
     }
 
-    /* NAVBAR - Sans bordure basse */
-    nav {
-      width: 100%;
-      padding: 25px 0;
-      background: rgba(5, 8, 15, 0.95);
-      backdrop-filter: blur(10px);
+    /* Canvas de fond Matrix */
+    #bg-canvas {
       position: fixed;
+      top: 0; left: 0;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 25px;
+      background: rgba(5, 5, 7, 0.8);
+      backdrop-filter: blur(15px);
+      position: fixed;
+      width: 100%;
       top: 0;
       z-index: 1000;
-      text-align: center;
+      border-bottom: 1px solid var(--border);
     }
 
     nav a {
-      color: var(--text-dim);
+      color: var(--text);
       text-decoration: none;
-      margin: 0 20px;
       font-size: 0.85rem;
-      letter-spacing: 1px;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 2px;
       transition: 0.3s;
     }
 
-    nav a:hover, nav a.active { 
-      color: var(--accent); 
-      text-shadow: 0 0 10px var(--accent); 
+    nav a:hover, nav a.active {
+      color: var(--neon1);
+      text-shadow: 0 0 8px var(--neon1);
     }
 
-    /* CONTAINER */
     .container {
-      max-width: 600px;
-      width: 100%;
-      padding: 140px 20px 40px;
-      box-sizing: border-box;
-    }
-
-    header {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 140px 20px 60px;
       text-align: center;
-      margin-bottom: 40px;
+      animation: fadeIn 1s ease-out;
     }
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 3px;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: var(--neon1);
       margin: 0;
-      background: linear-gradient(90deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: 5px;
+      cursor: default;
     }
 
-    .status-bar {
-      font-family: monospace;
-      color: var(--accent);
-      font-size: 0.8rem;
-      margin-top: 10px;
-      letter-spacing: 2px;
+    h1:hover {
+      animation: glitch 0.3s infinite;
     }
 
-    /* CARTE - Sans bordure bleue */
     .contact-card {
-      background: var(--card-bg);
-      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid var(--border);
       padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      margin-top: 40px;
+      backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: left;
     }
 
     .info {
       margin-bottom: 30px;
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      line-height: 1.6;
+      font-family: monospace;
+      color: var(--neon2);
     }
 
     .info span {
       display: block;
-      color: var(--accent);
+      color: var(--text);
       font-size: 1.2rem;
       font-weight: bold;
-      margin-top: 5px;
+      margin-top: 8px;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    /* FOOTER - Sans bordure haute */
+    /* Style Typewriter pour le petit texte de statut */
+    #status-typing {
+      font-family: monospace;
+      color: var(--neon1);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
     footer {
-      margin-top: auto;
-      padding: 40px;
-      font-size: 0.75rem;
-      color: #4b5563;
-      letter-spacing: 2px;
       text-align: center;
-      width: 100%;
+      padding: 30px;
+      font-family: monospace;
+      color: #444;
+      font-size: 0.8rem;
     }
-
   </style>
 </head>
 <body>
+
+<canvas id="bg-canvas"></canvas>
 
 <nav>
   <a href="index.html">Accueil</a>
@@ -133,23 +156,24 @@
 <div class="container">
   <header>
     <h1>CONTACT</h1>
-    <div class="status-bar">> Pour_toute_aide_ou_renseignement..</div>
+    <div id="status-typing"></div>
   </header>
 
   <div class="contact-card">
     <div class="info">
-      ADRESSE_EMAIL
+      &gt; ADRESSE_EMAIL
       <span>aidaninfo56@gmail.com</span>
     </div>
-  <div class="contact-card">
+
     <div class="info">
-      Discord_Server_Team
-      <span>https://discord.gg/R6vWV8hJcr</span>
+      &gt; DISCORD_SERVER_TEAM
+      <span style="color: var(--neon1); font-size: 1rem;">https://discord.gg</span>
     </div>
+
     <div class="info">
-      TELEPHONE_SECURISE
+      &gt; TELEPHONE_SECURISE
       <span>+32 495 88 73 52</span>
-      <small style="display:block; margin-top:10px; opacity:0.6;">
+      <small style="display:block; margin-top:10px; opacity:0.6; color: var(--text); font-family: sans-serif; font-weight: normal;">
         Note : Les appels masqués sont automatiquement rejetés. Pas d'enregistrement.
       </small>
     </div>
@@ -157,11 +181,55 @@
 </div>
 
 <footer>
-  © 2026 | AGENTPATHOGENE | CYBERSECURITY 
+  > AGENTPATHOGENE | © 2026 | BUILT_FOR_THE_FUTURE
 </footer>
 
+<script>
+    // 1. EFFET DE FRAPPE (TYPEWRITER) POUR LE STATUT
+    const statusStr = "> Initialisation du protocole de communication...";
+    let j = 0;
+    function typeStatus() {
+        if (j < statusStr.length) {
+            document.getElementById("status-typing").innerHTML += statusStr.charAt(j);
+            j++;
+            setTimeout(typeStatus, 50);
+        }
+    }
+
+    // 2. CANVAS MATRIX BACKGROUND
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = "01010101"; // Plus binaire pour le côté Cyber
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 5, 7, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00f5ff';
+        ctx.font = fontSize + 'px monospace';
+
+        drops.forEach((y, i) => {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            ctx.fillText(text, i * fontSize, y * fontSize);
+            if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        });
+    }
+
+    setInterval(drawMatrix, 50);
+    window.onload = typeStatus;
+
+    // Ajuster le canvas si on redimensionne la fenêtre
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
 </body>
-</
-
-html>
-
+</html>
