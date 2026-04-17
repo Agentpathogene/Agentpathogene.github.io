@@ -13,7 +13,6 @@
       --text-main: #ffffff;
       --text-dim: #94a3b8;
       --card-bg: #0f172a;
-      --line-color: rgba(0, 245, 255, 0.2);
     }
 
     body {
@@ -27,13 +26,12 @@
       min-height: 100vh;
     }
 
-    /* NAVBAR */
+    /* NAVBAR - Sans bordure basse */
     nav {
       width: 100%;
-      padding: 20px 0;
+      padding: 25px 0;
       background: rgba(5, 8, 15, 0.95);
       backdrop-filter: blur(10px);
-      
       position: fixed;
       top: 0;
       z-index: 1000;
@@ -59,7 +57,7 @@
     .container {
       max-width: 600px;
       width: 100%;
-      padding: 140px 20px 80px;
+      padding: 140px 20px 40px;
       box-sizing: border-box;
     }
 
@@ -69,9 +67,9 @@
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       margin: 0;
       background: linear-gradient(90deg, #fff, var(--accent));
       -webkit-background-clip: text;
@@ -86,87 +84,37 @@
       letter-spacing: 2px;
     }
 
-    /* CARD CONTACT */
+    /* CARTE - Sans bordure bleue */
     .contact-card {
       background: var(--card-bg);
-      border: 1px solid var(--line-color);
       border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(0,245,255,0.05);
-      transition: 0.4s;
-    }
-
-    .contact-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 30px rgba(0,245,255,0.15);
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .info {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       font-size: 0.9rem;
       color: var(--text-dim);
+      line-height: 1.6;
     }
 
     .info span {
       display: block;
-      color: var(--text-main);
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: bold;
       margin-top: 5px;
     }
 
-    form {
-      margin-top: 25px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      background: transparent;
-      border: 1px solid var(--line-color);
-      padding: 12px;
-      border-radius: 8px;
-      color: #fff;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    input:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 10px var(--accent-dim);
-    }
-
-    textarea {
-      resize: none;
-      height: 100px;
-    }
-
-    button {
-      background: transparent;
-      border: 1px solid var(--accent);
-      padding: 12px;
-      border-radius: 8px;
-      color: var(--accent);
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      font-family: monospace;
-      letter-spacing: 1px;
-    }
-
-    button:hover {
-      background: var(--accent);
-      color: #000;
-      box-shadow: 0 0 20px var(--accent);
-    }
-
+    /* FOOTER - Sans bordure haute */
     footer {
-      margin-top: 80px;
+      margin-top: auto;
       padding: 40px;
       font-size: 0.75rem;
       color: #4b5563;
       letter-spacing: 2px;
       text-align: center;
-      border-top: 1px solid var(--line-color);
       width: 100%;
     }
 
@@ -184,30 +132,31 @@
 <div class="container">
   <header>
     <h1>CONTACT</h1>
-    <div class="status-bar">> information_de_contact</div>
+    <div class="status-bar">> terminal_session_active</div>
   </header>
 
   <div class="contact-card">
-
     <div class="info">
-      Email
+      ADRESSE_EMAIL
       <span>aidaninfo56@gmail.com</span>
     </div>
 
     <div class="info">
-      Téléphone
+      TELEPHONE_SECURISE
       <span>+32 495 88 73 52</span>
-      Les appels ne seront pas enregistré , les appels masqués seront refusés...
+      <small style="display:block; margin-top:10px; opacity:0.6;">
+        Note : Les appels masqués sont automatiquement rejetés. Pas d'enregistrement.
+      </small>
     </div>
-
-   
+  </div>
+</div>
 
 <footer>
-  © 2026 | AGENTPATHOGENE | CYBERSECURITY CONTACT
+  © 2026 | AGENTPATHOGENE | CYBERSECURITY 
 </footer>
 
 </body>
-</html>
+</
 
-
+html>
 
