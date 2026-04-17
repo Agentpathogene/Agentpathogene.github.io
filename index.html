@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Cybersecurité</title>
+    <title>Portfolio | Aidan Coulon</title>
     <style>
         :root {
             --bg-color: #050507;
@@ -15,10 +14,17 @@
             --border: rgba(0, 245, 255, 0.2);
         }
 
-        /* Animations */
+        /* --- ANIMATIONS PRO --- */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes scanline { 0% { bottom: 100%; } 100% { bottom: -100%; } }
+        
+        /* Effet Glitch pour le Titre */
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon1), -2px 0 var(--neon2); }
+            25% { text-shadow: -2px 0 var(--neon1), 2px 0 var(--neon2); }
+            50% { text-shadow: 2px -2px var(--neon1), -2px 2px var(--neon2); }
+            100% { text-shadow: 2px 0 var(--neon1), -2px 0 var(--neon2); }
+        }
 
         body {
             background-color: var(--bg-color);
@@ -31,13 +37,20 @@
             min-height: 100vh;
         }
 
-        /* Navbar modifiée pour les redirections */
+        /* Canvas de fond pour l'effet Matrix/Data */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
         nav {
             display: flex;
             justify-content: center;
             gap: 40px;
             padding: 25px;
-            background: rgba(5, 5, 7, 0.9);
+            background: rgba(5, 5, 7, 0.8);
             backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
@@ -53,29 +66,12 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        /* Effet de soulignement néon au survol */
-        nav a::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--neon1);
-            box-shadow: 0 0 10px var(--neon1);
             transition: 0.3s;
         }
 
         nav a:hover {
             color: var(--neon1);
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            text-shadow: 0 0 8px var(--neon1);
         }
 
         header {
@@ -84,38 +80,31 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 120px 20px 60px;
+            padding: 140px 20px 60px;
             text-align: center;
             animation: fadeIn 1s ease-out;
         }
 
         .profile-container {
-            width: 160px;
-            height: 160px;
+            width: 160px; height: 160px;
             border-radius: 50%;
-            border: 3px solid var(--neon1);
+            border: 2px solid var(--neon1);
             margin-bottom: 30px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
-            animation: float 5s ease-in-out infinite;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            animation: float 4s ease-in-out infinite;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--neon1);
             margin: 0;
             letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+            cursor: default;
+        }
+
+        h1:hover {
+            animation: glitch 0.3s infinite;
         }
 
         .hero-card {
@@ -123,55 +112,55 @@
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 20px;
-            max-width: 600px;
+            max-width: 650px;
             margin-top: 40px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Style pour l'effet de frappe */
+        .typewriter {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            min-height: 3em;
         }
 
         .btn-main {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
+            margin-top: 30px;
+            padding: 15px 35px;
             border: 1px solid var(--neon1);
             color: var(--neon1);
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 4px;
             font-weight: bold;
-            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-main:hover {
             background: var(--neon1);
             color: var(--bg-color);
-            box-shadow: 0 0 20px var(--neon1);
+            box-shadow: 0 0 30px var(--neon1);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             font-family: monospace;
             color: #444;
             font-size: 0.8rem;
-        }
-
-        /* Overlay de scanline mouvant */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1001;
-            opacity: 0.3;
         }
     </style>
 </head>
 <body>
 
-<div class="overlay"></div>
+<canvas id="bg-canvas"></canvas>
 
 <nav>
-  <!-- Liens vers tes futures pages -->
   <a href="index.html">Accueil</a>
   <a href="about.html">Parcours</a>
   <a href="realisations.html">Certifications</a>
@@ -181,21 +170,64 @@
 
 <header>
   <div class="profile-container">
-   <img src="her.jpg" alt="Photo de profil" style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="her.jpg" alt="Aidan Coulon" style="width: 100%; height: 100%; object-fit: cover;">
   </div>
   
   <h1>CYBER-SÉCURITÉ</h1>
   
   <div class="hero-card">
-    <p style="font-family: monospace; color: var(--neon2); margin-top: 0;">[ AIDAN : COULON ]</p>
-    <p>Bienvenue sur mon blog. Je suis un étudiant en cybersécurité me specialisant dans le hacking ethique la securite des systems d'entreprise et la programmation python ...</p>
-    <a href="contact.html" class="btn-main">Entrez en contact</a>
+    <p style="font-family: monospace; color: var(--neon2); margin-top: 0; font-weight: bold;">
+        &gt; root@aidan-coulon:~$ <span id="dynamic-text"></span>
+    </p>
+    <p class="typewriter" id="typing"></p>
+    <a href="contact.html" class="btn-main">_INITIALISER_CONTACT</a>
   </div>
 </header>
 
 <footer>
   > Agentpathogene | © 2026 | BUILT_FOR_THE_FUTURE
 </footer>
+
+<script>
+    // 1. EFFET DE FRAPPE (TYPEWRITER)
+    const text = "Spécialiste en hacking éthique, sécurité système et automatisation Python. Passionné par l'exploitation de failles et la défense périmétrique.";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            document.getElementById("typing").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 30);
+        }
+    }
+
+    // 2. CANVAS ANIMATION (MATRIX LITE)
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 5, 7, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00f5ff';
+        ctx.font = fontSize + 'px monospace';
+
+        drops.forEach((y, i) => {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            ctx.fillText(text, i * fontSize, y * fontSize);
+            if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        });
+    }
+
+    setInterval(drawMatrix, 50);
+    window.onload = type;
+</script>
 
 </body>
 </html>
