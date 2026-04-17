@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writeups | HackTheBox</title>
+    <style>
+        :root {
+            --bg-color: #050507;
+            --accent: #
+
+00f5ff;
+            --accent-dim: rgba(0, 245, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: rgba(0, 245, 255, 0.2);
+            --easy: #9febd3;
+            --medium: #ff9d00;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* MATRIX BG */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+
+        nav {
+            width: 100%;
+            padding: 25px 0;
+            background: rgba(5, 5, 7, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0; z-index: 1000;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            padding: 160px 20px 60px;
+            box-sizing: border-box;
+        }
+
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-size: 2.5rem; letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        .status { color: var(--accent); font-family: monospace; font-size: 0.9rem; margin-top: 10px; }
+
+        /* GRILLE DE TRACKS */
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .track-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-card:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .track-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+        }
+
+        .difficulty { 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            padding: 2px 8px;
+            border: 1px solid currentColor;
+            border-radius: 3px;
+        }
+        
+        .easy { color: var(--easy); }
+        .medium { color: var(--medium); }
+
+        .machine-name {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .tags {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-family: monospace;
+            margin-bottom: 15px;
+        }
+
+        .desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #ccc;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-view {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .track-card:hover .btn-view {
+            background: var(--accent);
+            color: var(--bg-color);
+        }
+
+        footer { padding: 50px; color: #333; font-family: monospace; font-size: 0.7rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="realisations.html">Certification</a>
+    <a href="contact.html">Contact</a>
+    <a href="writeup.html" class="active">Writeups</a>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>HTB_DATABASE</h1>
+        <div class="status">> SÉLECTIONNER_CIBLE_POUR_ANALYSE</div>
+    </header>
+
+    <div class="tracks-grid">
+        
+        <!-- ========================================== -->
+        <!-- COPIE CE BLOC POUR CHAQUE NOUVEAU WRITEUP -->
+        <!-- ========================================== -->
+        <a href="writeups/lame.html" class="track-card">
+            <div class="track-meta">
+                <span class="difficulty easy">Easy</span>
+                <span>ID: 001</span>
+            </div>
+            <h3 class="machine-name">LAME</h3>
+            <div class="tags">Linux | Samba | RCE</div>
+            <p class="desc">Exploitation d'une vulnérabilité usermap script sur Samba 3.0.20 permettant un accès root sans authentification.</p>
+            <div class="btn-view">Consulter_Rapport</div>
+        </a>
+        <!-- ========================================== -->
+
+        <!-- Exemple 2 -->
+        <a href="writeups/blue.html" class="track-card">
+            <div class="track-meta">
+                <span class="difficulty easy">Easy</span>
+                <span>ID: 002</span>
+            </div>
+            <h3 class="machine-name">BLUE</h3>
+            <div class="tags">Windows | MS17-010 | SMB</div>
+            <p class="desc">Exploitation du protocole SMB via EternalBlue pour compromettre totalement une machine Windows 7.</p>
+            <div class="btn-view">Consulter_Rapport</div>
+        </a>
+
+    </div>
+</div>
+
+<footer>
+    > AGENTPATHOGENE | HTB_ARCHIVES | © 2026
+</footer>
+
+<script>
+    // FOND MATRIX BINAIRE
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const drops = Array(Math.floor(canvas.width / 15)).fill(1);
+    function draw() {
+        ctx.fillStyle = 'rgba(5, 5, 7, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00f5ff';
+        ctx.font = '14px monospace';
+        drops.forEach((y, i) => {
+            const text = Math.round(Math.random());
+            ctx.fillText(text, i * 15, y * 15);
+            if (y * 15 > canvas.height && Math.random() > 0.98) drops[i] = 0;
+            drops[i]++;
+        });
+    }
+    setInterval(draw, 50);
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+</script>
+
+</body>
+</html>
 
