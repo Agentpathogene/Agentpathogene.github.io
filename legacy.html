@@ -10,7 +10,6 @@
             --bg-color: #050507;
             --text-main: #ffffff;
             --neon-green: #39ff14;
-            --glass-bg: rgba(255, 255, 255, 0.03);
         }
 
         body {
@@ -18,136 +17,81 @@
             color: var(--text-main);
             font-family: 'Segoe UI', monospace;
             margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
         }
 
-        /* Scanline effect */
-        body::before {
-            content: " ";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-            background-size: 100% 4px; z-index: 1000; pointer-events: none;
-        }
-
-        .container { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
+        .container { max-width: 800px; width: 100%; }
 
         header { 
-            border-left: 4px solid var(--neon-green); 
-            padding-left: 20px; 
-            margin-bottom: 60px; 
-        }
-
-        /* Animation Typewriter pour le titre */
-        .typewriter h1 {
-            overflow: hidden;
-            border-right: .15em solid var(--neon-green);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
-            font-size: 3rem;
-        }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--neon-green); } }
-
-        .status-badge {
-            color: var(--neon-green);
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .step {
-            background: var(--glass-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
-            padding: 30px;
+            border-left: 3px solid var(--neon-green);
+            padding-left: 15px;
             margin-bottom: 40px;
-            transition: 0.3s;
         }
 
-        .step:hover { border-color: rgba(57, 255, 20, 0.3); background: rgba(57, 255, 20, 0.01); }
+        h1 { letter-spacing: 5px; margin: 0; font-size: 2rem; }
 
-        .step-title {
-            color: var(--neon-green);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
+        .step { margin-bottom: 30px; }
 
-        .screenshot {
-            width: 100%;
-            border: 1px solid #333;
-            border-radius: 4px;
-            margin: 20px 0;
-            filter: brightness(0.7);
-            transition: 0.5s;
-        }
-
-        .screenshot:hover { filter: brightness(1); border-color: var(--neon-green); }
-
-        /* LE FIX YOUTUBE FIREFOX */
-        .video-container {
+        /* Style pour l'image cliquable */
+        .video-link {
+            display: block;
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
             border: 1px solid var(--neon-green);
-            background: #000;
-            margin-top: 20px;
-        }
-
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        .back-link {
-            color: #555;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
             text-decoration: none;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 20px;
         }
-        .back-link:hover { color: var(--neon-green); }
+
+        .video-link:hover {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            transform: scale(1.02);
+        }
+
+        .video-link img {
+            width: 100%;
+            display: block;
+            filter: brightness(0.6);
+        }
+
+        /* Overlay "Play" */
+        .video-link::after {
+            content: "▶ REGARDER LA DÉMO";
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border: 1px solid var(--neon-green);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <a href="../writeup.html" class="back-link">[ RETOUR_DATABASE ]</a>
-    
-    <header class="typewriter">
-        <div class="status-badge">Analyse de Compromission</div>
+    <header>
         <h1>LEGACY_REPORT</h1>
-        <div style="color: #444; font-family: monospace;">CIBLE: 10.10.10.4 | SYSTEM: WIN_XP</div>
+        <p style="color: #666;">[ STATUS: DECRYPTED ]</p>
     </header>
 
     <div class="step">
-        <div class="step-title">> PHASE_01_ENUMERATION</div>
-        <p>Analyse des services distants via <code>nmap</code>. Vulnérabilité détectée sur le port 445.</p>
-        <img src="../assets/img/legacy-nmap.png" alt="Nmap" class="screenshot">
+        <p>Exploitation réussie via MS08-067. Accès SYSTEM obtenu.</p>
     </div>
 
-    <div class="step">
-        <div class="step-title">> PHASE_02_EXPLOITATION</div>
-        <p>Exploitation du service SMB. Injection du payload via MS08-067.</p>
-        <img src="../assets/img/legacy-exploit.png" alt="Exploit" class="screenshot">
-    </div>
+    <!-- LIEN SUR IMAGE (Remplace l'URL de l'image et de la vidéo) -->
+    <a href="https://youtube.com" target="_blank" class="video-link">
+        <img src="legacy.png" alt="Miniature Vidéo">
+    </a>
 
-    <div style="margin-top: 60px;">
-        <h2 style="text-align: center; font-size: 0.9rem; letter-spacing: 5px; color: var(--neon-green);">ENREGISTREMENT_VISUEL</h2>
-        <div class="video-container">
-            <!-- ICI : Utilise obligatoirement le format /embed/ -->
-            <!-- J'ai mis une vidéo HTB Legacy par défaut, remplace l'ID si besoin -->
-            <iframe src="https://youtube.com/embed/" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <footer style="text-align: center; margin-top: 80px; color: #222; font-size: 0.7rem;">
-        END_OF_TRANSMISSION // AGENTPATHOGENE_
+    <footer style="margin-top: 50px; font-size: 0.7rem; color: #333; text-align: center;">
+        AGENTPATHOGENE_ // DATABASE_2026
     </footer>
 </div>
 
