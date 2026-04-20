@@ -150,48 +150,46 @@
 
     <div class="tracks-grid">
 
+<!-- CARTE LEGACY CORRIGÉE -->
+<a href="writeups/legacy.html" class="track-card" style="--track-color: var(--neon-green); position: relative; border-radius: 8px; background: rgba(255,255,255,0.02); overflow: hidden; display: block;">
+    
+    <!-- CONTENEUR IMAGE UNIQUE -->
+    <div style="position: relative; height: 180px; width: 100%; overflow: hidden; border-bottom: 2px solid rgba(57, 255, 20, 0.2);">
+        <!-- L'image réelle -->
+        <img src="legacy.png" alt="Machine Legacy HTB" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%) contrast(110%);">
         
+        <!-- Overlay dégradé pour le style (évite la répétition) -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 20%, var(--bg-color) 100%);"></div>
         
-         <!-- CARTE LEGACY ULTRA-STYLE -->
-        <a href="writeups/legacy.html" class="track-card" style="--track-color: var(--neon-green); position: relative; border-radius: 8px; background: rgba(255,255,255,0.02);">
-            <img src="legacy.png" alt="Machine Legacy HTB" style="width: 100%; height: 180px; object-fit: cover; filter: grayscale(50%) contrast(120%); border-radius: 8px 8px 0 0;">
-            <!-- Logo HTB flottant avec lueur -->
-            <div style="position: absolute; top: 15px; right: 15px; z-index: 5; filter: drop-shadow(0 0 8px var(--neon-green));">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--neon-green)">
-                    <path d="M12 0L3.6 4.8v14.4L12 24l8.4-4.8V4.8L12 0zm0 2.2l6.6 3.8v12l-6.6 3.8-6.6-3.8v-12L12 2.2zm0 4.6l-4.2 2.4v4.8l4.2 2.4 4.2-2.4V9.2L12 6.8z"/>
-                </svg>
-            </div>
+        <!-- Logo HTB flottant -->
+        <div style="position: absolute; top: 15px; right: 15px; z-index: 5; filter: drop-shadow(0 0 8px var(--neon-green));">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--neon-green)">
+                <path d="M12 0L3.6 4.8v14.4L12 24l8.4-4.8V4.8L12 0zm0 2.2l6.6 3.8v12l-6.6 3.8-6.6-3.8v-12L12 2.2zm0 4.6l-4.2 2.4v4.8l4.2 2.4 4.2-2.4V9.2L12 6.8z"/>
+            </svg>
+        </div>
+    </div>
+    
+    <div class="card-body" style="padding: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span style="background: var(--neon-green); color: #000; font-size: 0.6rem; padding: 2px 6px; font-weight: bold; border-radius: 2px;">WIN</span>
+            <span style="color: var(--neon-green); font-family: monospace; font-size: 0.7rem; letter-spacing: 1px;">OS: Windows-XP</span>
+        </div>
 
-            <!-- Header Image avec dégradé radial (Focus sur le logo central) -->
-            <div class="machine-img" style="
-                background-image: radial-gradient(circle, transparent 20%, var(--bg-color) 90%), url('legacy.png'); 
-                height: 180px; 
-                border-bottom: 2px solid rgba(57, 255, 20, 0.2);">
-            </div>
-            
-            <div class="card-body" style="padding: 20px;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <span style="background: var(--neon-green); color: #000; font-size: 0.6rem; padding: 2px 6px; font-weight: bold; border-radius: 2px;">WIN</span>
-                    <span style="color: var(--neon-green); font-family: monospace; font-size: 0.7rem; letter-spacing: 1px;">OS: Windows-XP</span>
-                </div>
-
-                <h3 class="machine-name" style="font-size: 1.5rem; text-shadow: 0 0 15px rgba(57, 255, 20, 0.5); margin-bottom: 5px;">LEGACY</h3>
-                <p class="desc" style="color: #888; min-height: 40px;">Exploitation NetAPI (MS08-067) pour un accès SYSTEM immédiat.</p>
-                
-                <!-- Bouton stylisé avec lien explicite -->
-                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.6rem; color: #444; font-family: monospace;">#MACHINE_EASY</span>
-                    <div class="btn-view" style="font-weight: 800; font-size: 0.8rem;">
-                        OUVRIR_WRITEUP <span style="margin-left: 5px;">→</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Effet de scanline sur la carte -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); z-index: 1; background-size: 100% 2px, 3px 100%; pointer-events: none; opacity: 0.3;"></div>
-        </a>
-
+        <h3 class="machine-name" style="font-size: 1.5rem; text-shadow: 0 0 15px rgba(57, 255, 20, 0.5); margin-bottom: 5px;">LEGACY</h3>
+        <p class="desc" style="color: #888; min-height: 40px;">Exploitation NetAPI (MS08-067) pour un accès SYSTEM immédiat.</p>
         
+        <!-- Pied de carte -->
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.6rem; color: #444; font-family: monospace;">#MACHINE_EASY</span>
+            <div class="btn-view" style="font-weight: 800; font-size: 0.8rem;">
+                OUVRIR_WRITEUP <span style="margin-left: 5px;">→</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Effet de scanline (z-index mis à 2 pour être sous le logo mais sur l'image) -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none; opacity: 0.3;"></div>
+</a>
 
 <footer>
     
