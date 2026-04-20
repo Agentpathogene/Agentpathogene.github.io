@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <
+
+meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORTS | LEGACY</title>
+    <style>
+        :root {
+            --bg-color: #050507;
+            --text-main: #ffffff;
+            --neon-green: #39ff14;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', monospace;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: " ";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px; z-index: 1000; pointer-events: none;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
+
+        header { 
+            border-left: 4px solid var(--neon-green); 
+            padding-left: 20px; 
+            margin-bottom: 60px; 
+        }
+
+        .status-badge {
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h1 { font-size: 3rem; margin: 10px 0; letter-spacing: 5px; }
+
+        /* Section de contenu */
+        .step {
+            background: var(--glass-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .step-title {
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-title::before { content: "> "; margin-right: 10px; }
+
+        /* Balise image optimisée */
+        .screenshot {
+            width: 100%;
+            border: 1px solid #333;
+            border-radius: 4px;
+            margin: 20px 0;
+            transition: 0.3s;
+            cursor: zoom-in;
+        }
+
+        .screenshot:hover { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(57, 255, 20, 0.2); }
+
+        code {
+            background: #000;
+            color: #00ff00;
+            padding: 2px 6px;
+            font-family: monospace;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            margin-top: 50px;
+        }
+
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        .back-link {
+            color: var(--neon-green);
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../writeup.html" class="back-link"> [ < RETOUR_DATABASE ]</a>
+    
+    <header>
+        <div class="status-badge">Analyse de Compromission</div>
+        <h1>LEGACY_REPORT</h1>
+        <div style="color: #666; font-size: 0.9rem;">CIBLE: 10.10.10.4 | OS: Windows XP | DIFFICULTÉ: Easy</div>
+    </header>
+
+    <!-- ÉTAPE 1 -->
+    <div class="step">
+        <div class="step-title">ENUMERATION</div>
+        <p>On commence par un scan <code>nmap</code> pour identifier les ports ouverts. Le port 445 (SMB) semble vulnérable.</p>
+        <img src="../assets/img/legacy-nmap.png" alt="Nmap Screenshot" class="screenshot">
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div class="step">
+        <div class="step-title">EXPLOITATION (MS08-067)</div>
+        <p>Utilisation de Metasploit pour exploiter la vulnérabilité NetAPI. Le payload <code>windows/meterpreter/reverse_tcp</code> est configuré.</p>
+        <img src="../assets/img/legacy-exploit.png" alt="Exploit Screenshot" class="screenshot">
+    </div>
+
+    <!-- ÉTAPE 3 -->
+    <div class="step">
+        <div class="step-title">POST-EXPLOITATION</div>
+        <p>Une fois le shell obtenu, nous vérifions nos privilèges avec <code>getuid</code>. Nous sommes directement <b>NT AUTHORITY\SYSTEM</b>.</p>
+        <img src="../assets/img/legacy-flags.png" alt="Flags Screenshot" class="screenshot">
+    </div>
+
+    <!-- SECTION VIDÉO -->
+    <div style="text-align: center; margin-top: 80px;">
+        <h2 style="letter-spacing: 5px;">DEMO_VISUELLE</h2>
+        <div class="video-container">
+            <!-- REMPLACE LE ID APRÈS /embed/ PAR CELUI DE TA VIDÉO -->
+            <iframe src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 100px; color: #444; font-size: 0.7rem;">
+        END_OF_FILE // AGENTPATHOGENE_
+    </footer>
+</div>
+
+</body>
+</html>
 
