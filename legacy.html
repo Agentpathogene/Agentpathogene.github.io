@@ -1,15 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REPORTS | LEGACY</title>
+    <title>REPORT | LEGACY</title>
     <style>
         :root {
             --bg-color: #050507;
             --text-main: #ffffff;
             --neon-green: #39ff14;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         body {
@@ -17,81 +17,116 @@
             color: var(--text-main);
             font-family: 'Segoe UI', monospace;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            padding: 50px 20px;
+            line-height: 1.6;
         }
 
-        .container { max-width: 800px; width: 100%; }
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
 
-        header { 
-            border-left: 3px solid var(--neon-green);
-            padding-left: 15px;
-            margin-bottom: 40px;
+        header { border-left: 4px solid var(--neon-green); padding-left: 20px; margin-bottom: 50px; }
+        h1 { letter-spacing: 5px; margin: 0; }
+
+        /* Style des étapes du Writeup */
+        .step {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 4px;
         }
 
-        h1 { letter-spacing: 5px; margin: 0; font-size: 2rem; }
+        .step-title { color: var(--neon-green); font-weight: bold; margin-bottom: 15px; }
 
-        .step { margin-bottom: 30px; }
+        /* Espace Screenshot */
+        .screenshot {
+            width: 100%;
+            height: auto;
+            border: 1px solid #222;
+            margin-top: 15px;
+            border-radius: 4px;
+            display: block;
+        }
 
-        /* Style pour l'image cliquable */
+        /* Case vidéo réduite à la fin */
+        .video-box {
+            max-width: 
+
+400px; /* Taille réduite */
+            margin: 60px auto 0;
+            text-align: center;
+        }
+
         .video-link {
             display: block;
             position: relative;
             border: 1px solid var(--neon-green);
-            border-radius: 8px;
+            border-radius: 4px;
             overflow: hidden;
             transition: 0.3s;
             text-decoration: none;
         }
 
-        .video-link:hover {
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
-            transform: scale(1.02);
-        }
+        .video-link:hover { box-shadow: 0 0 15px var(--neon-green); transform: translateY(-3px); }
 
-        .video-link img {
-            width: 100%;
-            display: block;
-            filter: brightness(0.6);
-        }
+        .video-link img { width: 100%; display: block; filter: brightness(0.5); }
 
-        /* Overlay "Play" */
-        .video-link::after {
-            content: "▶ REGARDER LA DÉMO";
-            position: absolute;
-            top: 50%; left: 50%;
+        .play-overlay {
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             color: var(--neon-green);
+            font-size: 0.8rem;
             font-weight: bold;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 20px;
             border: 1px solid var(--neon-green);
-            pointer-events: none;
+            padding: 5px 10px;
+            background: rgba(0,0,0,0.8);
+            white-space: nowrap;
         }
+
+        .back-btn { color: #444; text-decoration: none; font-size: 0.7rem; margin-bottom: 20px; display: block; }
+        .back-btn:hover { color: var(--neon-green); }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a href="../writeup.html" class="back-btn">[ < RETOUR ]</a>
+    
     <header>
-        <h1>LEGACY_REPORT</h1>
-        <p style="color: #666;">[ STATUS: DECRYPTED ]</p>
+        <h1>LEGACY_WRITEUP</h1>
+        <div style="font-size: 0.8rem; color: #555;">OS: Windows XP | IP: 10.10.10.4</div>
     </header>
 
+    <!-- ÉTAPE 1 -->
     <div class="step">
-        <p>Exploitation réussie via MS08-067. Accès SYSTEM obtenu.</p>
+        <div class="step-title">> 01_ENUMERATION</div>
+        <p>Scan Nmap pour identifier les vulnérabilités SMB.</p>
+        <img src="../assets/img/legacy-nmap.png" alt="Nmap Screenshot" class="screenshot">
     </div>
 
-    <!-- LIEN SUR IMAGE (Remplace l'URL de l'image et de la vidéo) -->
-    <a href="https://youtube.com" target="_blank" class="video-link">
-        <img src="legacy.png" alt="Miniature Vidéo">
-    </a>
+    <!-- ÉTAPE 2 -->
+    <div class="step">
+        <div class="step-title">> 02_EXPLOITATION</div>
+        <p>Exploitation via MS08-067 avec Metasploit.</p>
+        <img src="../assets/img/legacy-exploit.png" alt="Exploit Screenshot" class="screenshot">
+    </div>
 
-    <footer style="margin-top: 50px; font-size: 0.7rem; color: #333; text-align: center;">
-        AGENTPATHOGENE_ // DATABASE_2026
+    <!-- ÉTAPE 3 -->
+    <div class="step">
+        <div class="step-title">> 03_PRIVESC</div>
+        <p>Accès SYSTEM confirmé. Récupération des flags.</p>
+        <img src="../assets/img/legacy-proof.png" alt="Proof Screenshot" class="screenshot">
+    </div>
+
+    <!-- CASE VIDÉO RÉDUITE -->
+    <div class="video-box">
+        <p style="font-size: 0.7rem; color: #444; margin-bottom: 10px; letter-spacing: 2px;">DÉMO_VIDÉO</p>
+        <a href="https://youtube.com" target="_blank" class="video-link">
+            <img src="legacy.png" alt="Thumbnail">
+            <div class="play-overlay">VOIR SUR YOUTUBE →</div>
+        </a>
+    </div>
+
+    <footer style="text-align: center; margin-top: 60px; color: #222; font-size: 0.6rem;">
+        END_OF_FILE // 2026
     </footer>
 </div>
 
