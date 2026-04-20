@@ -82,8 +82,11 @@
         /* GRID DES TRACKS */
         .tracks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* On limite la largeur max des colonnes à 380px au lieu de 1fr */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
             gap: 30px;
+            /* On centre la grille si elle n'est pas pleine */
+            justify-content: center;
         }
 
         .track-card {
