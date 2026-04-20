@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,23 +36,28 @@
             border-left: 4px solid var(--neon-green); 
             padding-left: 20px; 
             margin-bottom: 60px; 
-            animation: slideIn 0.8s ease-out;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* Animation Typewriter pour le titre */
+        .typewriter h1 {
+            overflow: hidden;
+            border-right: .15em solid var(--neon-green);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+            font-size: 3rem;
         }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--neon-green); } }
 
         .status-badge {
             color: var(--neon-green);
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--neon-green);
         }
-
-        h1 { font-size: 3rem; margin: 10px 0; letter-spacing: 5px; }
 
         .step {
             background: var(--glass-bg);
@@ -59,8 +65,10 @@
             border-radius: 8px;
             padding: 30px;
             margin-bottom: 40px;
-            position: relative;
+            transition: 0.3s;
         }
+
+        .step:hover { border-color: rgba(57, 255, 20, 0.3); background: rgba(57, 255, 20, 0.01); }
 
         .step-title {
             color: var(--neon-green);
@@ -68,45 +76,28 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
-            font-weight: bold;
         }
-
-        .step-title::before { content: "> "; margin-right: 10px; opacity: 0.5; }
 
         .screenshot {
             width: 100%;
             border: 1px solid #333;
             border-radius: 4px;
             margin: 20px 0;
-            transition: 0.4s;
-            cursor: pointer;
-            filter: brightness(0.8);
+            filter: brightness(0.7);
+            transition: 0.5s;
         }
 
-        .screenshot:hover { 
-            filter: brightness(1);
-            border-color: var(--neon-green); 
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.15);
-        }
+        .screenshot:hover { filter: brightness(1); border-color: var(--neon-green); }
 
-        code {
-            background: #1a1a1a;
-            color: var(--neon-green);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        /* FIX POUR YOUTUBE / FIREFOX */
+        /* LE FIX YOUTUBE FIREFOX */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; 
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border: 1px solid var(--neon-green);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
-            margin-top: 40px;
             background: #000;
+            margin-top: 20px;
         }
 
         .video-container iframe {
@@ -116,60 +107,49 @@
         .back-link {
             color: #555;
             text-decoration: none;
-            font-size: 0.75rem;
-            margin-bottom: 30px;
+            font-size: 0.8rem;
             display: inline-block;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
-
         .back-link:hover { color: var(--neon-green); }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <a href="../writeup.html" class="back-link">[ ACCESS_DATABASE_FILES ]</a>
+    <a href="../writeup.html" class="back-link">[ RETOUR_DATABASE ]</a>
     
-    <header>
+    <header class="typewriter">
         <div class="status-badge">Analyse de Compromission</div>
         <h1>LEGACY_REPORT</h1>
-        <div style="color: #666; font-size: 0.9rem; font-family: monospace;">TARGET_IP: 10.10.10.4 | OS: Windows XP | DEPLOYED: YES</div>
+        <div style="color: #444; font-family: monospace;">CIBLE: 10.10.10.4 | SYSTEM: WIN_XP</div>
     </header>
 
     <div class="step">
-        <div class="step-title">PHASE_01: ENUMERATION</div>
-        <p>Scan <code>nmap</code> agressif pour détecter les services. Le port <strong>445</strong> est ouvert, indiquant un service SMB actif.</p>
-        <img src="../assets/img/legacy-nmap.png" alt="Screenshot Nmap" class="screenshot">
+        <div class="step-title">> PHASE_01_ENUMERATION</div>
+        <p>Analyse des services distants via <code>nmap</code>. Vulnérabilité détectée sur le port 445.</p>
+        <img src="../assets/img/legacy-nmap.png" alt="Nmap" class="screenshot">
     </div>
 
     <div class="step">
-        <div class="step-title">PHASE_02: EXPLOITATION</div>
-        <p>Lancement de l'exploit <code>ms08_067_netapi</code> via Metasploit. Cette faille permet l'exécution de code à distance sur les systèmes non patchés.</p>
-        <img src="../assets/img/legacy-exploit.png" alt="Screenshot Exploit" class="screenshot">
+        <div class="step-title">> PHASE_02_EXPLOITATION</div>
+        <p>Exploitation du service SMB. Injection du payload via MS08-067.</p>
+        <img src="../assets/img/legacy-exploit.png" alt="Exploit" class="screenshot">
     </div>
 
-    <div class="step">
-        <div class="step-title">PHASE_03: PRIVILEGE_ESCALATION</div>
-        <p>Une fois le shell ouvert, la commande <code>getsystem</code> confirme que nous avons les droits maximums sur la machine.</p>
-        <img src="../assets/img/legacy-flags.png" alt="Screenshot Proof" class="screenshot">
-    </div>
-
-    <!-- SECTION VIDÉO CORRIGÉE -->
-    <div style="margin-top: 80px;">
-        <h2 style="letter-spacing: 8px; font-size: 1rem; color: var(--neon-green); text-align: center;">DEMO_VISUELLE</h2>
+    <div style="margin-top: 60px;">
+        <h2 style="text-align: center; font-size: 0.9rem; letter-spacing: 5px; color: var(--neon-green);">ENREGISTREMENT_VISUEL</h2>
         <div class="video-container">
-            <!-- IMPORTANT: L'URL doit contenir "/embed/" pour fonctionner dans Firefox -->
-            <iframe src="https://youtube.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <!-- ICI : Utilise obligatoirement le format /embed/ -->
+            <!-- J'ai mis une vidéo HTB Legacy par défaut, remplace l'ID si besoin -->
+            <iframe src="https://youtube.com" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
-    <footer style="text-align: center; margin-top: 100px; color: #222; font-size: 0.7rem; font-family: monospace;">
-        REPORT_ID: #892-LEGACY // AGENTPATHOGENE_ // 2026
+    <footer style="text-align: center; margin-top: 80px; color: #222; font-size: 0.7rem;">
+        END_OF_TRANSMISSION // AGENTPATHOGENE_
     </footer>
 </div>
 
 </body>
 </html>
-
