@@ -119,7 +119,9 @@
     <!-- ÉTAPE 3 -->
     <div class="step">
         <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
-        <p></p></p>
+        <p>On a pas de script executable en sudo ni de credentials on regarde ce qui tourne en local avec: ss -tulpn mais on n'y a pas acces on va 
+        alors cree un dossier .ssh dans le repertoire principal de notre utilisateur courant sur la machine victim et ensuite y mettre sa clé publique dans un fichier authorized-keys
+        pour ensuite pouvoir avoir une connection ssh avec la machine cible et enumerer ce qui tourne en interne ...</p>
         <img src="" alt="Proof Screenshot" class="screenshot">
     </div>
 
