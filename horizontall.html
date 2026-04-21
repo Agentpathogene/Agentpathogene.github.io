@@ -122,7 +122,13 @@
         <p>On a pas de script executable en sudo ni de credentials on regarde ce qui tourne en local avec: ss -tulpn mais on n'y a pas acces on va 
         alors cree un dossier .ssh dans le repertoire principal de notre utilisateur courant sur la machine victim et ensuite y mettre sa clé publique dans un fichier authorized-keys
         pour ensuite pouvoir avoir une connection ssh avec la machine cible et enumerer ce qui tourne en interne ...</p>
-        <img src="" alt="Proof Screenshot" class="screenshot">
+        <img src="horizontall-ssh.png" alt="Proof Screenshot" class="screenshot">
+        <p>Ensuite on configure un tunneling ssh simple pour avoir accès a l application vulnerable depuis sa machine attaquante... </p>
+        <img src="horizontall-redirection.png" alt="Proof Screenshot" class="screenshot">
+        <p>Une fois la redirection effectuee on se renseigne sur la version de laravel l application est vulnérable a une rce 
+        (CVE-2021-3129) on peut donc des commandes systems en tant que root pour l'exploitee de nombreuse poc son dispo
+        sur github pour cette machine la meilleur est https://github.com/nth347/CVE-2021-3129_exploit !</p>
+        
     </div>
 
     <!-- CASE VIDÉO RÉDUITE -->
