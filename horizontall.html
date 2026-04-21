@@ -103,7 +103,7 @@
         configure la resolution DNS dans /etc/hosts.On analyse soigneusement l application web on arrive a 2 conclusions : 1_ les entrées
         utilisateurs sont sécurisées 2_ le fuzzing ne révèle rien de compromettant.L'analyse des fichiers js révèle un sous domaine ,
         api-prod une fois la redirection configurée dans /etc/hosts on arrive sur une application qui utilise le CMS strapi vulnerable
-        a une RCE sans authentification !!!</p>
+        a une RCE sans authentification la page de connexion est visible sur /ADMIN un fuzzing simple permet de la découvrir!!!</p>
         <img src="" class="screenshot">
     </div>
 
