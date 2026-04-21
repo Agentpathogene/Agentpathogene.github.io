@@ -98,7 +98,12 @@
     <!-- ÉTAPE 1 -->
     <div class="step">
         <div class="step-title">> 01_ENUMERATION</div>
-        <p></p>
+        <p>On commance la reconnaissance avec un scan nmap -p- et -A seuls les ports 22 (SSH: secure shell protocole) et 80 sont ouverts
+        on a donc une application web qui tourne sur la machine par ailleurs le scan nmap révèle un nom de domaine : horizontall.htb on
+        configure la resolution DNS dans /etc/hosts.On analyse soigneusement l application web on arrive a 2 conclusions : 1_ les entrées
+        utilisateurs sont sécurisées 2_ le fuzzing ne révèle rien de compromettant.L'analyse des fichiers js révèle un sous domaine ,
+        api-prod une fois la redirection configurée dans /etc/hosts on arrive sur une application qui utilise le CMS strapi vulnerable
+        a une RCE sans authentification !!!</p>
         <img src="" class="screenshot">
     </div>
 
