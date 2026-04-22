@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORT | ARMAGEDDON</title>
+    <style>
+        :root {
+            --bg-color: #050507;
+            --text-main: #ffffff;
+            --neon-green: #39ff14;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', monospace;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+
+        header { border-left: 4px solid var(--neon-green); padding-left: 20px; margin-bottom: 50px; }
+        h1 { letter-spacing: 5px; margin: 0; }
+
+        /* Style des étapes du Writeup */
+        .step {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .step-title { color: var(--neon-green); font-weight: bold; margin-bottom: 15px; }
+
+        /* Espace Screenshot */
+        .screenshot {
+            width: 100%;
+            height: auto;
+            border: 1px solid #222;
+            margin-top: 15px;
+            border-radius: 4px;
+            display: block;
+        }
+
+        /* Case vidéo réduite à la fin */
+        .video-box {
+            max-width: 
+
+400px; /* Taille réduite */
+            margin: 60px auto 0;
+            text-align: center;
+        }
+
+        .video-link {
+            display: block;
+            position: relative;
+            border: 1px solid var(--neon-green);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .video-link:hover { box-shadow: 0 0 15px var(--neon-green); transform: translateY(-3px); }
+
+        .video-link img { width: 100%; display: block; filter: brightness(0.5); }
+
+        .play-overlay {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid var(--neon-green);
+            padding: 5px 10px;
+            background: rgba(0,0,0,0.8);
+            white-space: nowrap;
+        }
+
+        .back-btn { color: #444; text-decoration: none; font-size: 0.7rem; margin-bottom: 20px; display: block; }
+        .back-btn:hover { color: var(--neon-green); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../writeup.html" class="back-btn">[ < RETOUR ]</a>
+    
+    <header>
+        <h1>ARMAGEDDON_WRITEUP</h1>
+        <div style="font-size: 0.8rem; color: #555;">OS: Linux</div>
+    </header>
+
+    <!-- ÉTAPE 1 -->
+    <div class="step">
+        <div class="step-title">> 01_ENUMERATION</div>
+        <p></p></p>
+        <img src="" class="screenshot">
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div class="step">
+        <div class="step-title">> 02_EXPLOITATION</div>
+        <p>On</p>
+        <img src="" alt="Exploit Screenshot" class="screenshot">
+    </div>
+
+    <!-- ÉTAPE 3 -->
+    <div class="step">
+        <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
+        <p></p>
+        <img src="" alt="Proof Screenshot" class="screenshot">
+        <p></p>
+
+        
+    </div>
+
+    <!-- CASE VIDÉO RÉDUITE -->
+    <div class="video-box">
+        <p style="font-size: 0.7rem; color: #444; margin-bottom: 10px; letter-spacing: 2px;">DÉMO_VIDÉO</p>
+        <a href="https://www.youtube.com/watch?v=1faoPrAfxVE" target="_blank" class="video-link">
+            <img src="" alt="Thumbnail">
+            <div class="play-overlay">VOIR LA VIDEO →</div>
+        </a>
+    </div>
+
+    <footer style="text-align: center; margin-top: 60px; color: #222; font-size: 0.6rem;">
+        END_OF_FILE // 2026
+    </footer>
+</div>
+
+</body>
+</html>
