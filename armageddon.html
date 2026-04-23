@@ -98,27 +98,30 @@
     <!-- ÉTAPE 1 -->
     <div class="step">
         <div class="step-title">> 01_ENUMERATION</div>
-        <p>On commance par une énumeration nmap qui ne révele que du ssh et une appli web sur le port 80
-        aucun nom de domaine ... on commance par habitude a verifier la reaction du sites aux entrees 
-        utilisateur et avant meme de pousser plus loin la reconnaissance on remarque ( pour moi grace a l'ex
-        tension wappanalyser que le site utilise une tres vielles version de PHP avec la version 7 du CMS drupal
-        cette combinaison nous fais pense aux fameuse faille drupalgeddon le nom de la box aussi lol ! Metasploit fournit
-        un exploit appoprie c est de loin plus facil qu 'une poc en python!</p>
+        <p>On commance par une énumeration nmap qui ne révele que le port 22 ssh  et une application web sur le port 80
+        aucun nom de domaine n'est disponible... On commance par habitude a vérifier la réaction du sites aux entrées 
+        utilisateur et avant meme de pousser plus loin la reconnaissance on remarque a l'aide de l'extension wappanalyser
+        ou meme d'un scan rapide avec l outil nikto 
+        que le site utilise une tres vielles version de PHP avec la version 7 du CMS drupal
+        cette combinaison nous fais pense aux fameuses faille drupalgeddon le nom de la box aussi... Metasploit fournit
+        un exploit appoprie c'est de loin plus facil qu'une poc en python! mais des payloads sont aussi disponible 
+        sur github ou exploitdb</p>
         <img src="" class="screenshot">
     </div>
 
     <!-- ÉTAPE 2 -->
     <div class="step">
         <div class="step-title">> 02_EXPLOITATION</div>
-        <p>On va donc utilise le payload fournit par metasploit pour automatiser l'exploitation et on a un accès 
-        a la machine cible en tant qu'utilisateur apache on verifie les parametres de configurations sur un site 
-        utilisant le CMS drupal il se trouve quasi tout le temps dans /sites/default/settings.php on recupere des 
-        credentials pour la base de donnee on peux s'y connecter mais au vu de la configuration special on ne peux recuperer 
+        <p>On va donc utilise le payload fournit par metasploit pour automatiser l'exploitation et on obtient un accès 
+        a la machine cible en tant qu'utilisateur apache on vérifie les parametres de configurations, sur un site 
+        utilisant le CMS drupal il se trouve quasi tout le temps dans /sites/default/settings.php .On récupère des 
+        crédentials pour la base de donnée on peux s'y connecter mais comme notre shell est assez restrictif et comme une 
+        stabilisations a l'aide de python ou meme de bash s'est avérée infructueuse on ne peux récuperer 
         la table user qu'en une commande avec l option -e de mysql (oui la video est raccourcie et certain passage sont 
-        reexecuter pour etre filmer ne m ' en veuiller pas je débute ) une fois la table user de la db recuperer on a 
-        le hash de brucetherealadmin on peux donc le craquer avec jhontheripper pour ma part ..... car il possede un format 
-        spécial drupal7 au bout de quelques seconde on récupere le mot de pass craque c'est "booboo" on tente une 
-        connexion ssh avec ces crédentials et on obtient bien un accèes !</p>
+        réexecuter pour etre filmer ne m ' en veuiller pas je débute ) une fois la table user de la db recupérée on a 
+        le hash de brucetherealadmin on peux donc le cassé avec jhon the ripper car il possede un format 
+        spécial drupal7 au bout de quelques seconde on récupere le mot de pass cassé c'est "booboo" on tente une 
+        connexion ssh avec ces crédentials et on obtient bien un acces shell en tant que "brucetherealadmin" !</p>
         <img src="armageddonex.png" alt="Exploit Screenshot" class="screenshot">
     </div>
 
@@ -127,8 +130,8 @@
         <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
         <p></p>
         <img src="armageddonprivesc.png" alt="Proof Screenshot" class="screenshot">
-        <p>Une fois l accèes obtenu on fais un simple sudo -l (comme dans la majorite des boxes easy lol) et on voit que l on peu sans mot de passe
-        installer des paquets via snap en tapant snap --version on voit qu'elle est vulnerable a CVE-2019-7304 exploit db fournit un exploit que je n est pas essayer 
+        <p>Une fois l accèes obtenu on fais un simple "sudo -l" pour voir quelles commandes nous sommes authorizés a executer en tant que root (comme dans la majorite des boxes easy ) et on voit que l on peu sans mot de passe
+        installer des paquets via snap en tapant snap --version on voit qu'elle est vulnerable a CVE-2019-7304 : La faille CVE-2019-7304, surnommée "Dirty Sock", permet une escalade de privilèges root locale via le service snapd. Cette vulnérabilité exploite un défaut de validation des sockets UNIX pour contourner les contrôles d'accès de l'API REST. Un utilisateur non privilégié peut ainsi forcer l'installation de paquets ou créer un compte administrateur. Elle affecte les versions de snapd antérieures à 2.37.1, principalement sur Ubuntu. La correction requiert la mise à jour du système vers une version sécurisée. exploit db fournit un exploit que je n est pas essayer 
         GTFObins fournit un exploit de base mais non fonctionnel car ici le system a du mal a reconnaitre le chemin de bash j'ai donc utilise un payload créer par
         ipsec aprèes avoir copier bash dans mon home .... je vous laisse avec la video</p>
 
