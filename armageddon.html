@@ -119,14 +119,14 @@
         le hash de brucetherealadmin on peux donc le craquer avec jhontheripper pour ma part ..... car il possede un format 
         spécial drupal7 au bout de quelques seconde on récupere le mot de pass craque c'est "booboo" on tente une 
         connexion ssh avec ces crédentials et on obtient bien un accèes !</p>
-        <img src="" alt="Exploit Screenshot" class="screenshot">
+        <img src="armageddonex.png" alt="Exploit Screenshot" class="screenshot">
     </div>
 
     <!-- ÉTAPE 3 -->
     <div class="step">
         <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
         <p></p>
-        <img src="" alt="Proof Screenshot" class="screenshot">
+        <img src="armageddonprivesc.png" alt="Proof Screenshot" class="screenshot">
         <p>Une fois l accèes obtenu on fais un simple sudo -l (comme dans la majorite des boxes easy lol) et on voit que l on peu sans mot de passe
         installer des paquets via snap en tapant snap --version on voit qu'elle est vulnerable a CVE-2019-7304 exploit db fournit un exploit que je n est pas essayer 
         GTFObins fournit un exploit de base mais non fonctionnel car ici le system a du mal a reconnaitre le chemin de bash j'ai donc utilise un payload créer par
