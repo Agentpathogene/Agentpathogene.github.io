@@ -95,25 +95,20 @@
         <div style="font-size: 0.8rem; color: #555;">OS: Linux</div>
     </header>
 
+
+
     <!-- ÉTAPE 1 -->
     <div class="step">
-        <div class="step-title">> 01_ENUMERATION</div>
-        <p></p>
-        <img src="" class="screenshot">
-    </div>
-
-    <!-- ÉTAPE 2 -->
-    <div class="step">
-        <div class="step-title">> 02_EXPLOITATION</div>
+        <div class="step-title">> 01_ENUMERATION + USER</div>
           <p><strong>On commance par un scan nmap agressif</strong> ( -A) le scan Nmap révèle que le port 445 est ouvert. 
-            L'énumération commence par tester une Null Session (connexion sans identifiants) pour voir si des partages sont accessibles publiquement.<br>
+            L'énumération commence par tester une Null Session (connexion sans identifiants) pour voir si des partages sont accessibles publiquement.<br><br>
             <strong>Énumération des partages :</strong> En utilisant smbclient ou CrackMapExec avec un utilisateur anonyme, on découvre que le partage Replication est lisible. 
-            Ce partage est crucial car il contient souvent des fichiers liés aux politiques de groupe (GPO).<br>
+            Ce partage est crucial car il contient souvent des fichiers liés aux politiques de groupe (GPO).<br><br>
             <strong>Exploitation du fichier Groups.xml : </strong>En fouillant dans l'arborescence du partage Replication, on finit par tomber sur un fichier nommé Groups.xml
-            situé dans les dossiers de préférences des GPO. Ce fichier est une mine d'or car il contient un attribut nommé cpassword<br>
+            situé dans les dossiers de préférences des GPO. Ce fichier est une mine d'or car il contient un attribut nommé cpassword<br><br>
             <strong>Le concept de cpassword :</strong> À l'époque, Microsoft permettait de stocker des mots de passe dans les GPO pour créer des comptes administrateurs 
             locaux sur les postes du domaine. Bien que chiffré en AES, la clé de déchiffrement a été rendue publique par Microsoft. Sur cette machine, 
-            il suffit d'utiliser l'outil gpp-decrypt pour obtenir le mot de passe en clair de l'utilisateur SVC_TGS.<br><strong>Vecteur d'entrée :</strong> Une fois le mot de passe
+            il suffit d'utiliser l'outil gpp-decrypt pour obtenir le mot de passe en clair de l'utilisateur SVC_TGS.<br><br><strong>Vecteur d'entrée :</strong> Une fois le mot de passe
             de l'utilisateur SVC_TGS récupéré, on utilise à nouveau SMB pour vérifier ses accès. On s'aperçoit que cet utilisateur a accès au partage Users, 
             ce qui permet de récupérer le flag user.txt et de passer à l'étape suivante de l'attaque : le Kerberoasting.</p>
         <img src=".png" alt="Exploit Screenshot" class="screenshot">
