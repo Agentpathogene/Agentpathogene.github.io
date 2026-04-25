@@ -99,23 +99,23 @@
     <div class="step">
         <div class="step-title">> 01_ENUMERATION</div>
         <p>On commence la machine par un scan nmap pour identifier les ports et services ouverts l'option -p- sert a scanner l'entieretée des ports (1024 - 65535) et pas seulement les Ports Communs (0 - 1023) , L'option -A de Nmap est un scan "agressif" qui combine la détection de l'OS, des versions de services, le balayage par scripts (NSE , option -sC) et le traceroute.Une fois le scan effectue on a trois ports ouvert :<p>
-<strong>1. Port 135 (MSRPC)</strong><br>
+<strong><span style="color: #ff5f5f">1. Port 135 (MSRPC)</span></strong><br>
 Service : Microsoft Remote Procedure Call.<br>
 Rôle : C'est le "central d'aiguillage" de Windows. Il permet à un programme sur une machine de demander à un programme sur une autre machine d'exécuter une tâche.<br>
 Usage : Indispensable pour l'administration à distance et pour que les services Windows sachent sur quels autres ports communiquer.<br>
 <br>
-<strong>2. Port 139 (NetBIOS Session Service)</strong><br>
+<strong><span style="color: #ff5f5f">2. Port 139 (NetBIOS Session Service)</span></strong><br>
 Service : NetBIOS sur TCP/IP.<br>
 Rôle : Héritage des anciens réseaux Windows (pré-Windows 2000). Il servait à l'authentification et au partage de fichiers.<br>
 Usage : Aujourd'hui, il est souvent conservé pour la compatibilité avec de vieux systèmes ou logiciels, mais il est largement remplacé par le port 445.<br>
 <br>
-<strong>3. Port 445 (Microsoft-DS / SMB)</strong><br>
+<strong><span style="color: #ff5f5f">3. Port 445 (Microsoft-DS / SMB)</span></strong><br>
 Service : Server Message Block (SMB) sur TCP direct.<br>
 Rôle : C'est le port moderne pour le partage de fichiers et d'imprimantes dans un réseau local.<br>
 Usage : C'est ici que transitent vos dossiers partagés. C’est aussi un port critique car il est souvent visé par des vulnérabilités majeures (comme EternalBlue).
 </p><br>On a donc une vielle version de windows avec un smb ouvert on va lancer un scan nmap afin de voir si la cible est vulnerable au failles connues tel que eternalblue ou encore ms08_067<br>
     La cible apparait comme vulnérable a la célèbre faille ms08_067<p>
-<strong>MS08-067 (Faille critique SMB)</strong><br>
+<strong><span style="color: #ff5f5f">MS08-067 (Faille critique SMB)</span></strong><br>
 Service : Service Serveur (via le port 445).<br>
 Rôle : Il s'agit d'une vulnérabilité d'exécution de code à distance qui permet à un attaquant de prendre le contrôle total d'un système Windows sans authentification.<br>
 Usage : Historiquement utilisée par le ver Conficker, elle exploite une faille dans la gestion des requêtes RPC (Remote Procedure Call) mal formées.<br>
@@ -134,7 +134,7 @@ Impact : Bien que corrigée depuis 2008, elle reste un cas d'école en cyberséc
     <!-- ÉTAPE 3 -->
     <div class="step">
         <div class="step-title">> 03_RECUPERATION_DES_FLAGS</div>
-        <p>Accès SYSTEM confirmé. Récupération des flags dans dans les bureau de l'utilisateur john et de l'utilisateur administrator pas d'escalade de privileges dans cette machine! c'est une petite machine concue pour les débutants.....</p>
+        <p><span style="color: #ff5f5f">Accès SYSTEM confirmé.</span> Récupération des flags dans dans les bureau de l'utilisateur john et de l'utilisateur administrator pas d'escalade de privileges dans cette machine! c'est une petite machine concue pour les débutants.....</p>
         <img src="legacyy-flag.png" alt="Proof Screenshot" class="screenshot">
     </div>
 
