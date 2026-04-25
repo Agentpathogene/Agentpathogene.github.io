@@ -104,6 +104,13 @@
             L'énumération commence par tester une Null Session (connexion sans identifiants) pour voir si des partages sont accessibles publiquement.<br><br>
             <strong>Énumération des partages :</strong> En utilisant smbclient ou CrackMapExec avec un utilisateur anonyme, on découvre que le partage Replication est lisible. 
             Ce partage est crucial car il contient souvent des fichiers liés aux politiques de groupe (GPO).<br><br>
+              <strong>Rapel important :</strong>
+              <p>Les GPO (Group Policy Objects) et les GPP (Group Policy Preferences) sont les deux leviers d'administration centralisée d'un domaine Active Directory. 
+                  Tandis que les GPO imposent des restrictions strictes et obligatoires qui verrouillent l’interface pour l’utilisateur 
+                  (comme les règles de sécurité ou l’interdiction de l'USB), les GPP offrent une souplesse supérieure en configurant des éléments de 
+                  l’environnement de travail (lecteurs réseau, imprimantes, raccourcis) sans nécessairement bloquer la modification par l’utilisateur. 
+                  La différence majeure réside dans la gestion du système : une GPO « tatoue » souvent le registre et reste active même après sa suppression, 
+                  alors qu’une GPP permet un ciblage ultra-précis par critère matériel ou réseau (Item-level targeting) et peut s'effacer proprement si elle n'est plus applicable.</p>
             <strong>Exploitation du fichier Groups.xml : </strong>En fouillant dans l'arborescence du partage Replication, on finit par tomber sur un fichier nommé Groups.xml
             situé dans les dossiers de préférences des GPO. Ce fichier est une mine d'or car il contient un attribut nommé cpassword<br><br>
             <strong>Le concept de cpassword :</strong> À l'époque, Microsoft permettait de stocker des mots de passe dans les GPO pour créer des comptes administrateurs 
