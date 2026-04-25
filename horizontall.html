@@ -98,11 +98,11 @@
     <!-- ÉTAPE 1 -->
     <div class="step">
         <div class="step-title">> 01_ENUMERATION</div>
-        <p><strong>On commance la reconnaissance :</strong> avec un scan nmap -p- et -A ; seuls les ports 22 (SSH: secure shell protocole) et 80 (HTTP : hyper texte transfert protocole) sont ouverts
+        <p><strong><span style="color: #ff5f5f">On commance la reconnaissance :</span></strong> avec un scan nmap -p- et -A ; seuls les ports 22 (SSH: secure shell protocole) et 80 (HTTP : hyper texte transfert protocole) sont ouverts
         on a donc une application web qui tourne sur la machine. Par ailleurs le scan nmap révèle un nom de domaine : horizontall.htb, on
         configure la resolution DNS dans /etc/hosts.<br><br>
-        <strong>On analyse soigneusement l application web : </strong><br> on arrive a 2 conclusions : <br>1_ les entrées
-        utilisateurs sont sécurisées<br> 2_ le fuzzing ne révèle rien de compromettant.<br><strong>On analyse fichiers js :</strong> ce qui révèle un sous domaine ,
+        <strong><span style="color: #ff5f5f">On analyse soigneusement l application web : </span></strong><br> on arrive a 2 conclusions : <br>1_ les entrées
+        utilisateurs sont sécurisées<br> 2_ le fuzzing ne révèle rien de compromettant.<br><strong><span style="color: #ff5f5f">On analyse fichiers js :</span></strong> ce qui révèle un sous domaine ,
         "api-prod" ; une fois la redirection configurée dans /etc/hosts , on arrive sur une application qui utilise le CMS strapi : CMS qui est vulnerable
         a une RCE sans authentification sur la page de connexion ! .La page de connexion elle est visible sur /ADMIN un fuzzing simple avec dirb gobuster ou encore ffuf permet de la découvrir!!!</p>
         <img src="horizontall-strapi.png" class="screenshot">
@@ -111,7 +111,7 @@
     <!-- ÉTAPE 2 -->
     <div class="step">
         <div class="step-title">> 02_EXPLOITATION</div>
-        <p><strong>Exploitation de la RCE :</strong><br>On utiliste l'exploit de exploit DB afin d'obtenir un shell sur la machine victim , une fois l'accès obtenu , on verifie quels utilisateurs 
+        <p><strong><span style="color: #ff5f5f">Exploitation de la RCE :</span></strong><br>On utiliste l'exploit de exploit DB afin d'obtenir un shell sur la machine victim , une fois l'accès obtenu , on verifie quels utilisateurs 
         ont un acces shell avec : cat /etc/passwd | grep sh .<br> On apprend que  l'utilisateur devloper en plus de root et de notre utilisateur courant ont un acces shell ;
         et , sur le repertoir /home/devloper on à accès au flag user de la machine ....!!!</p>
         <img src="horizontall-rce.png" alt="Exploit Screenshot" class="screenshot">
@@ -120,15 +120,15 @@
     <!-- ÉTAPE 3 -->
     <div class="step">
         <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
-        <p><strong>On a pas de binnaire executable en sudo ni de credentials.</strong><br> On regarde ce qui tourne en local avec: ss -tulpn , mais on ne parviens pas a lister a cause de notre shell restrictif<br><strong>Pour
-         passer a un shell ssh stable et non restrictif :</strong><br> On va 
+        <p><strong><span style="color: #ff5f5f">On a pas de binnaire executable en sudo ni de credentials.</span></strong><br> On regarde ce qui tourne en local avec: ss -tulpn , mais on ne parviens pas a lister a cause de notre shell restrictif<br><strong><span style="color: #ff5f5f">Pour
+         passer a un shell ssh stable et non restrictif :</span></strong><br> On va 
         alors cree un dossier .ssh dans le repertoire principal de notre utilisateur courant sur la machine victim , et ensuite y mettre notre clé publique rsa dans un fichier authorized-keys
         pour ensuite pouvoir se connecter en ssh avec la machine cible avec un shell qui n est pas restreint ce qui nous permettra d' énumerer ce qui tourne en interne <br><br>
-        <strong>Sur le port 8000 :</strong> On decouvre , (grace a une requete curl) une application qui utilise Laravel et une vielle version de php.</p>
+        <strong><span style="color: #ff5f5f">Sur le port 8000 :</span></strong> On decouvre , (grace a une requete curl) une application qui utilise Laravel et une vielle version de php.</p>
         <img src="horizontall-ssh.png" alt="Proof Screenshot" class="screenshot">
         <p>Ensuite on configure un tunneling ssh simple pour avoir accès a l'application vulnérable depuis sa machine attaquante... </p>
         <img src="horizontall-redirection.png" alt="Proof Screenshot" class="screenshot">
-        <p><strong>Une fois la redirection effectuée :</strong><br>on se renseigne sur la version de Laravel on apprend qu'elle est vulnérable a une RCE 
+        <p><strong><span style="color: #ff5f5f">Une fois la redirection effectuée :</span></strong><br>on se renseigne sur la version de Laravel on apprend qu'elle est vulnérable a une RCE 
         (CVE-2021-3129) on peut donc executer  des commandes systems en tant que root. ( Car le service tourne en root , c est du moins ce que j'en ai deduis car qu en j'ai voulu savoir quel 
             utilisateur la faisait tournee j'ai eu une erreur de permission ...)<br> Pour l'exploiter de nombreuses pocs son disponibles
         sur github , pour cette machine la meilleur est https://github.com/nth347/CVE-2021-3129_exploit ! enjoy the root !</p>
