@@ -111,7 +111,7 @@
     <!-- ÉTAPE 2 -->
     <div class="step">
         <div class="step-title">> 02_EXPLOITATION</div>
-        <p><stromg>Exploitation de la RCE :</stromg><br>On utiliste l'exploit de exploit DB afin d'obtenir un shell sur la machine victim , une fois l'accès obtenu , on verifie quels utilisateurs 
+        <p><strong>Exploitation de la RCE :</strong><br>On utiliste l'exploit de exploit DB afin d'obtenir un shell sur la machine victim , une fois l'accès obtenu , on verifie quels utilisateurs 
         ont un acces shell avec : cat /etc/passwd | grep sh .<br> On apprend que  l'utilisateur devloper en plus de root et de notre utilisateur courant ont un acces shell ;
         et , sur le repertoir /home/devloper on à accès au flag user de la machine ....!!!</p>
         <img src="horizontall-rce.png" alt="Exploit Screenshot" class="screenshot">
@@ -124,14 +124,14 @@
          passer a un shell ssh stable et non restrictif :</strong><br> On va 
         alors cree un dossier .ssh dans le repertoire principal de notre utilisateur courant sur la machine victim , et ensuite y mettre notre clé publique rsa dans un fichier authorized-keys
         pour ensuite pouvoir se connecter en ssh avec la machine cible avec un shell qui n est pas restreint ce qui nous permettra d' énumerer ce qui tourne en interne <br><br>
-        <strong>Sur le port 8000 :</strong>On decouvre , (grace a une requete curl) une application qui utilise Laravel et une vielle version de php</p>
+        <strong>Sur le port 8000 :</strong> On decouvre , (grace a une requete curl) une application qui utilise Laravel et une vielle version de php.</p>
         <img src="horizontall-ssh.png" alt="Proof Screenshot" class="screenshot">
         <p>Ensuite on configure un tunneling ssh simple pour avoir accès a l'application vulnérable depuis sa machine attaquante... </p>
         <img src="horizontall-redirection.png" alt="Proof Screenshot" class="screenshot">
-        <p><strong>Une fois la redirection effectuée :</strong><br>on se renseigne sur la version de laravel on apprend qu'elle est vulnérable a une rce 
-        (CVE-2021-3129) on peut donc executer  des commandes systems en tant que root. ( car le service tourne en root , c est du moins ce que j en est deduis car qu en j ai voulu savoir quel 
-            utilisateur la faisait tournee j'ai eu une erreur de permission ...)<br> Pour l'exploitée de nombreuse poc son dispo
-        sur github pour cette machine la meilleur est https://github.com/nth347/CVE-2021-3129_exploit ! enjoy the root !</p>
+        <p><strong>Une fois la redirection effectuée :</strong><br>on se renseigne sur la version de Laravel on apprend qu'elle est vulnérable a une RCE 
+        (CVE-2021-3129) on peut donc executer  des commandes systems en tant que root. ( Car le service tourne en root , c est du moins ce que j'en ai deduis car qu en j'ai voulu savoir quel 
+            utilisateur la faisait tournee j'ai eu une erreur de permission ...)<br> Pour l'exploiter de nombreuses pocs son disponibles
+        sur github , pour cette machine la meilleur est https://github.com/nth347/CVE-2021-3129_exploit ! enjoy the root !</p>
         
     </div>
 
