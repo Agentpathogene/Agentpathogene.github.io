@@ -100,11 +100,11 @@
         <div class="step-title">> 01_ENUMERATION</div>
         <p><strong><span style="color: #ff5f5f">On commance par une énumeration nmap :</span></strong><br>
             Elle ne révele que le port 22 ssh  et une application web sur le port 80
-        aucun nom de domaine n'est disponible... <br><br><strong>Puis par habitude :</strong> je vérifie la réaction du sites aux entrées 
+        aucun nom de domaine n'est disponible... <br><br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">Puis par habitude :</span></strong> je vérifie la réaction du sites aux entrées 
         utilisateur et avant meme de pousser plus loin la reconnaissance , je remarque , ( a l'aide de l'extension wappanalyser
         ou meme d'un scan rapide avec l outil nikto )
         que le site utilise une tres vielles version de PHP avec la version 7 du CMS drupal.<br><br>
-        <strong>Cette combinaison : </strong>  m'a tout desuite fais pense aux fameuses failles drupalgeddons , ( le nom de la box aussi...) ,Metasploit fournit
+        <strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">Cette combinaison :</span></strong>  m'a tout desuite fais pense aux fameuses failles drupalgeddons , ( le nom de la box aussi...) ,Metasploit fournit
         un exploit appoprié c'est de loin plus facil qu'une poc en python! , mais des payloads sont aussi disponible 
         sur github ou exploit DB ( pour ceux qui preferent une exploitation manuelle ).</p>
         <img src="" class="screenshot">
@@ -117,14 +117,14 @@
         a la machine cible en tant qu'utilisateur apache , on vérifie les parametres de configurations : sur un site 
         utilisant le CMS drupal il se trouvent quasi tout le temps dans le repertoire " /sites/default/settings.php " . 
             
-        <br><br><strong>On récupère des 
-        crédentials pour la base de donnée :</strong> on peux s'y connecter , mais comme notre shell est assez restrictif et comme une 
+        <br><br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">On récupère des 
+        crédentials pour la base de donnée :</span></strong> on peux s'y connecter , mais comme notre shell est assez restrictif et comme une 
         stabilisations a l'aide de python ou meme de bash s'est avérée infructueuse on ne peux récuperer 
         la table user qu'en une commande avec l option -e de mysql . <br> (oui la video est raccourcie et certain passage sont 
         réexecuter pour etre filmer ne m'en veuiller pas je débute ).<br><br> Une fois la table user de la db recupérée on a 
         le hash de brucetherealadmin : On peux donc le cassé avec jhon the ripper car il possède un format 
-        spécial drupal7 : au bout de quelques secondes , on récupere le mot de pass cassé c'est "booboo".<br><br><strong> On tente une 
-        connexion ssh </strong> avec ces crédentials et on obtient bien un acces shell en tant que "brucetherealadmin" !!</p>
+        spécial drupal7 : au bout de quelques secondes , on récupere le mot de pass cassé c'est "booboo".<br><br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;"> On tente une 
+        connexion ssh </span></strong> avec ces crédentials et on obtient bien un acces shell en tant que "brucetherealadmin" !!</p>
         <img src="armageddonex.png" alt="Exploit Screenshot" class="screenshot">
     </div>
 
@@ -133,16 +133,16 @@
         <div class="step-title">> 03_ESCALADE_DES_PRIVILEGES</div>
         <p></p>
         <img src="armageddonprivesc.png" alt="Proof Screenshot" class="screenshot">
-        <p><strong>Une fois l accèes obtenu : </strong><br>On commence par un simple "sudo -l" pour voir quelles commandes nous sommes authorizés a executer en tant que root : (comme dans la majorite des boxes easy ) 
+        <p><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">Une fois l accèes obtenu :</span> </strong><br>On commence par un simple "sudo -l" pour voir quelles commandes nous sommes authorizés a executer en tant que root : (comme dans la majorite des boxes easy ) 
             et on voit que l on peu sans mot de passe ;
-        installer des paquets via snap en tapant snap --version on voit qu'elle est vulnerable a CVE-2019-7304 .<br><strong>La faille CVE-2019-7304 :</strong> Surnommée "Dirty Sock", elle permet une escalade de privilèges 
+        installer des paquets via snap en tapant snap --version on voit qu'elle est vulnerable a CVE-2019-7304 .<br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">La faille CVE-2019-7304 :</span></strong> Surnommée "Dirty Sock", elle permet une escalade de privilèges 
             locale via le service snapd. Cette vulnérabilité exploite un défaut de validation des sockets UNIX pour contourner les contrôles d'accès de l'API REST. 
             Un utilisateur non privilégié peut ainsi forcer l'installation de paquets ou créer un compte administrateur. <br>
-            Elle affecte les versions de snapd antérieures à 2.37.1, principalement sur Ubuntu. La correction requiert la mise à jour du système vers une version sécurisée.<br><br><strong> Exploit DB </strong>fournit un exploit qui ne fonctionne pas ici
+            Elle affecte les versions de snapd antérieures à 2.37.1, principalement sur Ubuntu. La correction requiert la mise à jour du système vers une version sécurisée.<br><br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;"> Exploit DB </span></strong>fournit un exploit qui ne fonctionne pas ici
              ( ou peut-etre je l ai mal utilise)
         GTFObins fournit un exploit de base mais non fonctionnel car ici le system a du mal a reconnaitre le chemin de bash j'ai donc utilise un payload créer par
         ipsec aprèes avoir copier bash dans mon home .... je vous laisse avec la video!
-        <br><br><strong>Petite definition !</strong>Une API REST (REpresentational State Transfer) est une interface de programmation 
+        <br><br><strong><span style="color: #ff5f5f; text-shadow: 0 0 5px #ff5f5f;">Petite definition !</span></strong>Une API REST (REpresentational State Transfer) est une interface de programmation 
             d'application qui respecte des contraintes architecturales spécifiques pour permettre à des logiciels de communiquer sur un réseau (HTTP/HTTPS). 
             Elle utilise des méthodes standard (GET, POST, PUT, DELETE) pour manipuler des données (JSON/XML) entre un client et un serveur</p>
 
