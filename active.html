@@ -115,7 +115,7 @@
             situé dans les dossiers de préférences des GPO. Ce fichier est une mine d'or car il contient un attribut nommé cpassword<br><br>
             <strong><span style="color: #ff5f5f">Le concept de cpassword :</span></strong> À l'époque, Microsoft permettait de stocker des mots de passe dans les GPO pour créer des comptes administrateurs 
             locaux sur les postes du domaine. Bien que chiffré en AES, la clé de déchiffrement a été rendue publique par Microsoft. Sur cette machine, 
-            il suffit d'utiliser l'outil gpp-decrypt pour obtenir le mot de passe en clair de l'utilisateur SVC_TGS.<br><br><strong>Vecteur d'entrée :</strong> Une fois le mot de passe
+            il suffit d'utiliser l'outil gpp-decrypt pour obtenir le mot de passe en clair de l'utilisateur SVC_TGS.<br><br><span style="color: #ff5f5f"><strong>Vecteur d'entrée :</span></strong> Une fois le mot de passe
             de l'utilisateur SVC_TGS récupéré, on utilise à nouveau SMB pour vérifier ses accès. On s'aperçoit que cet utilisateur a accès au partage Users, 
             ce qui permet de récupérer le flag user.txt et de passer à l'étape suivante de l'attaque :<span style="color: #ff5f5f"> le Kerberoasting.</span></p>
         <img src="activenum.png" alt="Exploit Screenshot" class="screenshot">
@@ -138,8 +138,8 @@
             <span style="color: #ff5f5f">3_Extraction du Ticket :</span>Ce ticket TGS est chiffré avec le hash (NTLM) du mot de passe du compte de service cible. L'attaquant extrait ce ticket de la mémoire de sa 
         machine ou le récupère via des outils spécialisés.<br><br><span style="color: #ff5f5f">4_Craquage hors-ligne : </span>Puisque le ticket contient une portion chiffrée avec le secret du service, l'attaquant tente 
                 de "deviner" le mot de passe en 
-                testant des millions de combinaisons (attaque par dictionnaire ou force brute) sur sa propre machine. S'il trouve le bon mot de passe, il peut déchiffrer le ticket.<br><br>
-          Une fois notre hash recuperé : ici celui de l'administrateur, on le casse avec hashcat , après recuperation du mot de passe on peut etablir un shell distant avec la machine en tant qu'administrateur !</p>
+                testant des millions de combinaisons (attaque par dictionnaire ou force brute) sur sa propre machine. S'il trouve le bon mot de passe, il peut déchiffrer le ticket.<br><br><span style="color: #ff5f5f">
+          Une fois notre hash recuperé : </span>ici celui de l'administrateur, on le casse avec hashcat , après recuperation du mot de passe on peut etablir un shell distant avec la machine en tant qu'administrateur !</p>
         <img src="activexploit.png" alt="Exploit Screenshot" class="screenshot">
     </div>
 
