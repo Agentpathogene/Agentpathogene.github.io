@@ -118,9 +118,30 @@
             il suffit d'utiliser l'outil gpp-decrypt pour obtenir le mot de passe en clair de l'utilisateur SVC_TGS.<br><br><strong>Vecteur d'entrée :</strong> Une fois le mot de passe
             de l'utilisateur SVC_TGS récupéré, on utilise à nouveau SMB pour vérifier ses accès. On s'aperçoit que cet utilisateur a accès au partage Users, 
             ce qui permet de récupérer le flag user.txt et de passer à l'étape suivante de l'attaque :<span style="color: #ff5f5f"> le Kerberoasting.</span></p>
-        <img src=".png" alt="Exploit Screenshot" class="screenshot">
+        <img src="activenum.png" alt="Exploit Screenshot" class="screenshot">
     </div>
 
+    <!-- ÉTAPE 1 -->
+    <div class="step">
+        <div class="step-title">> 02_COMPROMISSION_TOTAL</div>
+          <p><strong><span style="color: #ff5f5f">Le Kerberoasting</span></strong> est une technique d'attaque post-exploitation qui permet à un utilisateur (même sans privilèges) de récupérer les mots de passe de 
+              comptes de service Active Directory. Cette attaque est particulièrement redoutable car elle s'appuie sur le fonctionnement légitime du protocole Kerberos et s'effectue principalement hors-ligne, ce qui 
+              la rend difficile à détecter.<br>Voici le détail de son fonctionnement étape par étape :<br><br>
+           <span style="color: #ff5f5f">1. Le principe : L'abus des SPN</span>Dans Active Directory, certains comptes (souvent des comptes d'utilisateurs agissant comme comptes de service) possèdent 
+              un Service Principal Name (SPN). Ce SPN lie un service (comme SQL ou IIS) à un compte spécifique. Le protocole Kerberos permet à n'importe quel utilisateur authentifié dans le domaine de demander un ticket 
+              de service pour n'importe quel SPN existant.<br><br>
+              <span style="color: #ff5f5f">2. Déroulement technique de l'attaque</span><br>
+              <span style="color: #ff5f5f">1_Reconnaissance (Énumération) :</span><br>L'attaquant liste tous les comptes du domaine possédant un SPN. Il cible prioritairement les comptes d'utilisateurs 
+                  (car leurs mots de passe sont souvent définis par des humains et donc plus faibles que les comptes machines générés aléatoirement).<br><br>
+            <span style="color: #ff5f5f">2_Demande de ticket (TGS-REQ) : </span>L'attaquant demande au Contrôleur de Domaine (KDC) un ticket de service (TGS) pour les SPN identifiés. 
+        Le KDC répond en fournissant un ticket.<br><br>
+            <span style="color: #ff5f5f">3_Extraction du Ticket :</span>Ce ticket TGS est chiffré avec le hash (NTLM) du mot de passe du compte de service cible. L'attaquant extrait ce ticket de la mémoire de sa 
+        machine ou le récupère via des outils spécialisés.<br><br><span style="color: #ff5f5f">4_Craquage hors-ligne : </span>Puisque le ticket contient une portion chiffrée avec le secret du service, l'attaquant tente 
+                de "deviner" le mot de passe en 
+                testant des millions de combinaisons (attaque par dictionnaire ou force brute) sur sa propre machine. S'il trouve le bon mot de passe, il peut déchiffrer le ticket.<br><br>
+          Une fois notre hash recuperé : ici celui de l'administrateur, on le casse avec hashcat , après recuperation du mot de passe on peut etablir un shell distant avec la machine en tant qu'administrateur !</p>
+        <img src="activexploit.png" alt="Exploit Screenshot" class="screenshot">
+    </div>
 
 
     <!-- CASE VIDÉO RÉDUITE -->
