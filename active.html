@@ -127,7 +127,7 @@
           <p><strong><span style="color: #ff5f5f">Le Kerberoasting</span></strong> est une technique d'attaque post-exploitation qui permet à un utilisateur (même sans privilèges) de récupérer les mots de passe de 
               comptes de service Active Directory. Cette attaque est particulièrement redoutable car elle s'appuie sur le fonctionnement légitime du protocole Kerberos et s'effectue principalement hors-ligne, ce qui 
               la rend difficile à détecter.<br>Voici le détail de son fonctionnement étape par étape :<br><br>
-           <span style="color: #ff5f5f">1. Le principe : L'abus des SPN</span>Dans Active Directory, certains comptes (souvent des comptes d'utilisateurs agissant comme comptes de service) possèdent 
+           <span style="color: #ff5f5f">1. Le principe : L'abus des SPN :</span> Dans Active Directory, certains comptes (souvent des comptes d'utilisateurs agissant comme comptes de service) possèdent 
               un Service Principal Name (SPN). Ce SPN lie un service (comme SQL ou IIS) à un compte spécifique. Le protocole Kerberos permet à n'importe quel utilisateur authentifié dans le domaine de demander un ticket 
               de service pour n'importe quel SPN existant.<br><br>
               <span style="color: #ff5f5f">2. Déroulement technique de l'attaque</span><br>
